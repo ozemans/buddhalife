@@ -1,0 +1,486 @@
+[
+  {
+    "id": "sh_childhood_001",
+    "title": "The Stray Dog",
+    "country": "shared",
+    "lifeStage": "childhood",
+    "minAge": 5,
+    "maxAge": 12,
+    "karmaRange": [-100, 100],
+    "description": "A mangy, starving dog has been lingering near the temple. The monks leave scraps for it but it is clearly suffering. Your friend throws a rock at it to chase it away. The First Precept -- 'do not kill' -- is the foundation of Buddhist ethics. But does it extend to animals? And is letting an animal suffer different from harming it?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Feed the dog and try to nurse it back to health",
+        "effects": {
+          "karma": { "merit": 6, "demerit": 0 },
+          "stats": { "happiness": 5, "spiritualDev": 5, "health": -1 },
+          "relationships": []
+        },
+        "outcomeText": "You share your lunch with the dog every day. It begins to trust you, wagging its tail when you approach. The monks nod approvingly -- metta (loving-kindness) extends to all sentient beings, not just humans. The dog recovers slowly. Your mother worries about disease, but the merit of compassion for a suffering creature is real and recognized by the community."
+      },
+      {
+        "id": "b",
+        "text": "Ignore the dog -- it is not your responsibility",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 1 },
+          "stats": { "happiness": 0, "spiritualDev": -1 },
+          "relationships": []
+        },
+        "outcomeText": "You walk past the dog each day. It grows thinner. One morning it is gone. The monks say it probably died in the forest. You feel a twinge of guilt but push it away. The First Precept forbids killing, not inaction. But the Buddha taught that compassion is active, not passive. The dog's suffering was an opportunity for merit that you chose to pass by."
+      },
+      {
+        "id": "c",
+        "text": "Ask the monks what Buddhism teaches about animal suffering",
+        "effects": {
+          "karma": { "merit": 4, "demerit": 0 },
+          "stats": { "happiness": 2, "spiritualDev": 6, "education": 3 },
+          "relationships": [{ "target": "monks", "change": 5 }]
+        },
+        "outcomeText": "The monk sits with you and explains: all beings are caught in samsara. This dog may have been a human in a past life, or you may have been a dog. Compassion for animals generates the same merit as compassion for humans. He quotes the Buddha: 'A bhikkhu who practices metta for all beings -- even for a moment -- is a bhikkhu who practices mindfulness.' You begin leaving scraps at the temple gate."
+      }
+    ],
+    "tags": ["first-precept", "animals", "compassion", "metta", "moral-dilemma"],
+    "source": "Knowledge base: Buddhist concepts -- Five Precepts, metta"
+  },
+  {
+    "id": "sh_childhood_002",
+    "title": "The Vesak Celebration",
+    "country": "shared",
+    "lifeStage": "childhood",
+    "minAge": 5,
+    "maxAge": 12,
+    "karmaRange": [-100, 100],
+    "description": "It is Vesak -- the triple celebration of the Buddha's birth, enlightenment, and death, the most sacred day in the Buddhist calendar. The temple is decorated with flowers and lanterns. Your family has prepared special offerings. The monks will chant through the night. Lanterns will be released into the sky.",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Participate fully: make offerings, listen to the sermons, release a lantern at midnight",
+        "effects": {
+          "karma": { "merit": 8, "demerit": 0 },
+          "stats": { "happiness": 7, "spiritualDev": 8, "socialStatus": 3 },
+          "relationships": [{ "target": "family", "change": 5 }]
+        },
+        "outcomeText": "The temple glows with candlelight. You sit through the sermon about Siddhartha's enlightenment under the Bodhi tree, understanding little but absorbing the atmosphere of devotion. At midnight, you release a paper lantern into the dark sky, watching it rise like a prayer. The Buddha was born under a tree, enlightened under a tree, gave his first sermon in a forest, and died in a forest. On Vesak, the whole world becomes a temple."
+      },
+      {
+        "id": "b",
+        "text": "Attend the celebration but focus on the food and fun",
+        "effects": {
+          "karma": { "merit": 3, "demerit": 0 },
+          "stats": { "happiness": 6, "spiritualDev": 2 },
+          "relationships": [{ "target": "friends", "change": 3 }]
+        },
+        "outcomeText": "You eat special Vesak sweets, play with your friends among the lanterns, and fall asleep during the sermon. Your parents carry you home past midnight. The merit of attending Vesak is real even if your participation was mostly culinary. The community gathered, the chanting filled the air, and you were part of it. Deeper understanding will come with age."
+      },
+      {
+        "id": "c",
+        "text": "Stay awake for the entire night of chanting, testing your endurance",
+        "effects": {
+          "karma": { "merit": 6, "demerit": 0 },
+          "stats": { "happiness": 2, "spiritualDev": 10, "health": -2 },
+          "relationships": [{ "target": "monks", "change": 5 }]
+        },
+        "outcomeText": "You force yourself to stay awake as the hours stretch past midnight, past two, past three. The monks' chanting becomes a current carrying you. Around four in the morning, something shifts -- the tiredness becomes a kind of clarity, and for a brief moment you understand why the monks do this. Dawn arrives and the chanting ends. You are exhausted and transformed in a way you cannot articulate. The monks smile at you, recognizing the effort."
+      }
+    ],
+    "tags": ["vesak", "celebration", "buddha", "lanterns", "sacred-day"],
+    "source": "Knowledge base: Buddhist concepts -- universal celebrations"
+  },
+  {
+    "id": "sh_adolescence_001",
+    "title": "The Five Precepts Dilemma",
+    "country": "shared",
+    "lifeStage": "adolescence",
+    "minAge": 14,
+    "maxAge": 19,
+    "karmaRange": [-100, 100],
+    "description": "Your friends invite you to a party where there will be drinking, dancing, and possibly stealing sweets from a shop on the way. The five precepts forbid killing, stealing, lying, sexual misconduct, and intoxication. Adults frequently say it is impossible to follow them until old age -- moral behavior is, in some sense, postponed until later in life. But the precepts are still the measure of a good person.",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Decline the party and spend the evening at the temple instead",
+        "effects": {
+          "karma": { "merit": 5, "demerit": 0 },
+          "stats": { "happiness": -2, "spiritualDev": 8, "socialStatus": -3 },
+          "relationships": [{ "target": "friends", "change": -5 }]
+        },
+        "outcomeText": "Your friends call you boring, but the temple is peaceful. An elder tells you: 'A person who kept the precepts is praised at death.' You meditate on the five precepts: no killing, no stealing, no lying, no intoxication, no sexual misconduct. They sound simple; they are not. But tonight, in the quiet temple, they feel achievable. Your friends return from the party hungover and regretful. You return from the temple rested and clear."
+      },
+      {
+        "id": "b",
+        "text": "Go to the party but set personal limits -- no stealing, no drinking",
+        "effects": {
+          "karma": { "merit": 2, "demerit": 1 },
+          "stats": { "happiness": 5, "spiritualDev": 1, "socialStatus": 2 },
+          "relationships": [{ "target": "friends", "change": 3 }]
+        },
+        "outcomeText": "You attend but drink water while others drink beer. You dance but decline when friends suggest shoplifting sweets. The middle path is harder than either extreme -- it requires constant vigilance and the social courage to say no when everyone else says yes. Your friends tease you but secretly respect the discipline. The precepts are a spectrum, not a binary, and tonight you stayed closer to the virtuous end."
+      },
+      {
+        "id": "c",
+        "text": "Go to the party and join in fully -- you are young, the precepts can wait",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 5 },
+          "stats": { "happiness": 6, "spiritualDev": -4, "health": -2 },
+          "relationships": [{ "target": "friends", "change": 5 }]
+        },
+        "outcomeText": "You drink, dance, steal sweets, and stumble home at dawn. It was exhilarating. But the morning brings headache, guilt, and a queasy stomach. The adults are right: the precepts are hard to keep when you are young. But that does not make breaking them consequence-free. Each broken precept leaves a residue of demerit. The cumulative weight of youthful indiscretions will need to be addressed later through merit-making. For now, the debt accrues."
+      }
+    ],
+    "tags": ["precepts", "temptation", "youth", "moral-dilemma", "intoxication"],
+    "source": "Knowledge base: Buddhist concepts -- Five Precepts, moral behavior postponed"
+  },
+  {
+    "id": "sh_youngadult_001",
+    "title": "The Sacred Shrine vs. Urban Development",
+    "country": "shared",
+    "lifeStage": "young_adulthood",
+    "minAge": 20,
+    "maxAge": 40,
+    "karmaRange": [-100, 100],
+    "description": "The government announces plans to demolish a beloved 150-year-old shrine in your neighborhood to build a commercial development. Devotees gather, telling miracle stories about what happened to previous developers who tried to disturb the site. Workers are arriving with bulldozers. The shrine served as a pilgrimage site for generations.",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Join the devotees protecting the shrine and share miracle stories with the workers",
+        "effects": {
+          "karma": { "merit": 6, "demerit": 0 },
+          "stats": { "happiness": 3, "spiritualDev": 5, "socialStatus": 6 },
+          "relationships": [{ "target": "community", "change": 8 }]
+        },
+        "outcomeText": "You stand with the crowd, telling workers about the contractor whose bulldozer mysteriously broke down, the foreman who developed a fever, the developer who lost his fortune. The stories may be legend, but the faith behind them is real. Sacred space carries power that development cannot account for. The workers hesitate. Whether the shrine survives depends on forces larger than your protest, but you have borne witness to something that matters."
+      },
+      {
+        "id": "b",
+        "text": "Accept the government's decision but negotiate relocation of sacred objects",
+        "effects": {
+          "karma": { "merit": 3, "demerit": 1 },
+          "stats": { "happiness": -1, "spiritualDev": 1, "socialStatus": 2 },
+          "relationships": [{ "target": "community", "change": 2 }]
+        },
+        "outcomeText": "You work with monks and elders to carefully remove and relocate the shrine's sacred objects to a new location. The physical items are saved, but the sacred power of the place -- accumulated through 150 years of prayer and pilgrimage -- cannot be moved. The new shrine will need decades of devotion before it carries the same spiritual weight. It is a compromise born of pragmatism, and it tastes like loss."
+      },
+      {
+        "id": "c",
+        "text": "See the development as progress -- the country needs modernization",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 3 },
+          "stats": { "happiness": 1, "spiritualDev": -3, "wealth": 2 },
+          "relationships": [{ "target": "community", "change": -8 }]
+        },
+        "outcomeText": "You stand aside as the bulldozers roll in. The shrine crumbles. The elders weep. In its place will rise a shopping center or an apartment block. You believe in progress, in modernity, in the future. But the community you were part of fractures around the loss. Sacred space is not renewable -- once destroyed, the accumulated devotion of generations disperses into the air, and no amount of concrete can replace it."
+      }
+    ],
+    "tags": ["shrine", "development", "modernization", "sacred-space", "community"],
+    "source": "Scholar 2 (Sevea -- shrine demolition)"
+  },
+  {
+    "id": "sh_adulthood_001",
+    "title": "The Kathina Ceremony",
+    "country": "shared",
+    "lifeStage": "adulthood",
+    "minAge": 25,
+    "maxAge": 65,
+    "karmaRange": [-100, 100],
+    "description": "It is Kathina -- the annual ceremony at the end of Vassa (the rains retreat) when laypeople offer new robes and supplies to monks. Your community is collecting contributions. Kathina is one of the most merit-rich events in the Buddhist calendar. A wealthy businessman offers to sponsor the entire ceremony himself, claiming all the merit. The community is torn between gratitude and resentment.",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Contribute what you can afford, regardless of the businessman's offer",
+        "effects": {
+          "karma": { "merit": 6, "demerit": 0 },
+          "stats": { "happiness": 4, "spiritualDev": 5, "wealth": -4 },
+          "relationships": [{ "target": "community", "change": 5 }]
+        },
+        "outcomeText": "You give your modest contribution alongside dozens of others. The monks accept every offering equally -- a handful of rice from a farmer carries the same spiritual weight as a bolt of silk from a merchant. The merit of Kathina is not zero-sum; your contribution generates merit for you regardless of what the businessman gives. The communal nature of the ceremony -- everyone giving according to their means -- is itself a teaching about the merit economy."
+      },
+      {
+        "id": "b",
+        "text": "Let the businessman sponsor everything -- save your money for your family",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 1 },
+          "stats": { "happiness": 1, "spiritualDev": -2, "wealth": 3 },
+          "relationships": [{ "target": "community", "change": -3 }]
+        },
+        "outcomeText": "The businessman's sponsorship is lavish: new robes, rice, cooking oil, medicine, everything the monks need. You attend the ceremony and receive a share of the communal merit, but the merit of giving -- the dana itself -- belongs to the sponsor. The community's role is reduced to spectating. The merit-power nexus is on full display: wealth buys merit, merit buys social power, and social power accumulates more wealth. It is the engine of Buddhist society, and not everyone can afford to participate."
+      },
+      {
+        "id": "c",
+        "text": "Organize the community to match the businessman's donation collectively",
+        "effects": {
+          "karma": { "merit": 8, "demerit": 0 },
+          "stats": { "happiness": 5, "spiritualDev": 6, "socialStatus": 8, "wealth": -5 },
+          "relationships": [{ "target": "community", "change": 10 }]
+        },
+        "outcomeText": "You rally dozens of families, each contributing a portion. Together, the community's collective offering matches the businessman's solo donation. The monks receive double the supplies. But more importantly, the merit is distributed across the entire community rather than concentrated in one wealthy donor. The businessman is impressed rather than offended -- he recognizes the communal spirit of Kathina. The merit-power nexus works both ways: collective generosity is its own form of power."
+      }
+    ],
+    "tags": ["kathina", "vassa", "robes", "dana", "merit-economy", "community"],
+    "source": "Knowledge base: Buddhist concepts -- dana, merit-power nexus, Kathina"
+  },
+  {
+    "id": "sh_adulthood_002",
+    "title": "Vassa: The Rains Retreat",
+    "country": "shared",
+    "lifeStage": "adulthood",
+    "minAge": 20,
+    "maxAge": 60,
+    "karmaRange": [-100, 100],
+    "description": "Vassa begins -- the three-month monsoon retreat period (July-October) when monks remain in their monasteries and intensify their practice. For laypeople, Vassa is a time for increased devotion: more temple visits, stricter precept-keeping, and abstinence from major celebrations like weddings. Your best friend wants to get married during Vassa.",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Advise your friend to wait until after Vassa for the wedding",
+        "effects": {
+          "karma": { "merit": 4, "demerit": 0 },
+          "stats": { "happiness": 2, "spiritualDev": 5 },
+          "relationships": [{ "target": "friend", "change": -2 }]
+        },
+        "outcomeText": "You explain the tradition: weddings during Vassa are inauspicious, as the monks' concentrated spiritual energy makes the period sacred. Your friend is impatient but eventually agrees. The wedding after Vassa is blessed by monks fresh from three months of intensive practice. The delay proves fortunate -- the extra time allows better planning, and the post-Vassa monks' blessings are believed to be especially powerful."
+      },
+      {
+        "id": "b",
+        "text": "Attend the wedding anyway -- traditions must adapt to modern life",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 2 },
+          "stats": { "happiness": 5, "spiritualDev": -2, "socialStatus": -2 },
+          "relationships": [{ "target": "friend", "change": 5 }]
+        },
+        "outcomeText": "The wedding during Vassa draws whispered disapproval from elders and monks. The ceremony proceeds without monastic blessings, since monks do not leave their monasteries during the retreat. The couple is happy but the community's blessing is incomplete. Some say the marriage started on a bad footing; others say such superstitions are outdated. Time will tell."
+      },
+      {
+        "id": "c",
+        "text": "Use Vassa as an opportunity for your own spiritual deepening -- take extra precepts",
+        "effects": {
+          "karma": { "merit": 7, "demerit": 0 },
+          "stats": { "happiness": 2, "spiritualDev": 10, "health": 3 },
+          "relationships": [{ "target": "monks", "change": 5 }]
+        },
+        "outcomeText": "You commit to keeping eight precepts during Vassa: the standard five plus no eating after noon, no entertainment, and sleeping on a simple mat. The three months are demanding. You visit the temple on every wan sin (precept day), meditate daily, and withdraw from worldly distractions. By the end of Vassa, you feel lighter -- not in body but in spirit. The monks nod their recognition. You have tasted what the monastic life offers, even as a layperson."
+      }
+    ],
+    "tags": ["vassa", "rains-retreat", "precepts", "marriage", "spiritual-practice"],
+    "source": "Knowledge base: Buddhist concepts -- Vassa, precept-keeping, seasonal devotion"
+  },
+  {
+    "id": "sh_adulthood_003",
+    "title": "The Lay Reader's Burden",
+    "country": "shared",
+    "lifeStage": "adulthood",
+    "minAge": 30,
+    "maxAge": 65,
+    "karmaRange": [10, 100],
+    "description": "You have been asked to serve as a tsalei (lay reader) -- performing scriptural readings at merit-making ceremonies. The role requires you to know the texts, maintain moral standing, and be available whenever the community needs you: funerals, weddings, newborn blessings, healing ceremonies. The responsibility is heavy but the spiritual rewards are immense.",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Accept the role and commit to learning the texts thoroughly",
+        "effects": {
+          "karma": { "merit": 8, "demerit": 0 },
+          "stats": { "happiness": 3, "spiritualDev": 12, "socialStatus": 8 },
+          "relationships": [{ "target": "community", "change": 10 }]
+        },
+        "outcomeText": "You begin studying the Pali texts under the guidance of the senior monks. Your reading voice must carry authority and calm -- at funerals, your words guide the phi to a safe passage; at weddings, your blessings protect the couple's khwan; at newborn ceremonies, your white string ties bind protection around tiny wrists. The community comes to depend on you. The role makes you a living bridge between the written dhamma and the people who need its power."
+      },
+      {
+        "id": "b",
+        "text": "Accept but worry about maintaining the moral standards required",
+        "effects": {
+          "karma": { "merit": 5, "demerit": 0 },
+          "stats": { "happiness": -1, "spiritualDev": 8, "socialStatus": 5 },
+          "relationships": [{ "target": "community", "change": 6 }]
+        },
+        "outcomeText": "You take on the role knowing that a lay reader's moral conduct is scrutinized. Any lapse -- a lost temper, a drink, a questionable business deal -- could undermine the perceived power of your readings. The responsibility is both an honor and a constraint. You find yourself living more carefully, making choices not just for yourself but for the community that relies on the sanctity of your voice."
+      },
+      {
+        "id": "c",
+        "text": "Decline -- you do not feel spiritually ready for such responsibility",
+        "effects": {
+          "karma": { "merit": 2, "demerit": 0 },
+          "stats": { "happiness": 1, "spiritualDev": 2 },
+          "relationships": [{ "target": "community", "change": -2 }]
+        },
+        "outcomeText": "The monks accept your refusal with quiet disappointment. Lay readers are increasingly rare as younger generations pursue education and careers rather than scriptural study. Without lay readers, the community's ceremonial life depends entirely on monks, who are themselves dwindling in number. Your humility is honest, but the gap you leave will be felt."
+      }
+    ],
+    "tags": ["lay-reader", "tsalei", "scripture", "community-service", "ceremonies"],
+    "source": "Knowledge base: Buddhist institutions -- lay readers, tsalei, ceremonial roles"
+  },
+  {
+    "id": "sh_adulthood_004",
+    "title": "The Generous Rival",
+    "country": "shared",
+    "lifeStage": "adulthood",
+    "minAge": 25,
+    "maxAge": 55,
+    "karmaRange": [-100, 100],
+    "description": "A neighbor who has wronged you in the past -- cheated you in a land deal, spread gossip about your family -- is now sponsoring a major merit-making ceremony and invites you to participate. Refusing would be socially disastrous, but participating means contributing to someone who harmed you. The merit-power nexus says merit is power. Do you help your rival accumulate it?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Attend and contribute generously -- let go of the grudge through dana",
+        "effects": {
+          "karma": { "merit": 8, "demerit": 0 },
+          "stats": { "happiness": 3, "spiritualDev": 8 },
+          "relationships": [{ "target": "rival", "change": 5 }, { "target": "community", "change": 5 }]
+        },
+        "outcomeText": "You arrive at the ceremony with a generous offering. Your rival is surprised. The monks chant, the merit is shared, and your contribution earns you spiritual credit alongside the sponsor. More importantly, the act of giving to someone who wronged you is an exercise in metta -- loving-kindness extended to all beings, including those who hurt you. The grudge does not dissolve overnight, but the act of generosity weakens its hold. The Buddha taught that anger harms the angry more than anyone else."
+      },
+      {
+        "id": "b",
+        "text": "Attend but contribute minimally -- fulfill the social obligation and nothing more",
+        "effects": {
+          "karma": { "merit": 2, "demerit": 1 },
+          "stats": { "happiness": 0, "spiritualDev": -1 },
+          "relationships": [{ "target": "community", "change": 2 }]
+        },
+        "outcomeText": "You show up, give the minimum acceptable offering, and leave early. The social duty is discharged but the grudge remains intact. The community notes your cool demeanor. Some sympathize -- they know what your rival did. Others judge: a Buddhist who cannot practice equanimity at a merit-making ceremony has not truly understood the dhamma. You are right to feel wronged, but the question is whether the feeling serves you."
+      },
+      {
+        "id": "c",
+        "text": "Refuse to attend -- some wrongs cannot be overlooked",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 4 },
+          "stats": { "happiness": -3, "spiritualDev": -4, "socialStatus": -5 },
+          "relationships": [{ "target": "rival", "change": -5 }, { "target": "community", "change": -8 }]
+        },
+        "outcomeText": "Your absence is noted and discussed. In a community where merit-making ceremonies are collective events, boycotting one is a serious social statement. Your rival gains sympathy as the wronged party -- he invited you, and you refused. The community's memory of the original injustice fades, replaced by the fresh wound of your refusal. Anger, the monks would say, is like holding a hot coal: you are the one who gets burned."
+      }
+    ],
+    "tags": ["grudge", "forgiveness", "metta", "dana", "social-obligation", "moral-dilemma"],
+    "source": "Knowledge base: Buddhist concepts -- metta, dana, merit-power nexus"
+  },
+  {
+    "id": "sh_adulthood_005",
+    "title": "The Sick Parent",
+    "country": "shared",
+    "lifeStage": "adulthood",
+    "minAge": 25,
+    "maxAge": 55,
+    "karmaRange": [-100, 100],
+    "description": "Your elderly parent is seriously ill. The hospital offers treatment but no cure. A traditional healer offers spiritual remedies: merit-transfer ceremonies, soul-calling rituals, protective chanting. A monk suggests an emergency three-day ordination -- the dying person's grandchild could ordain briefly, generating a burst of merit that might ease the parent's passage. Time is running out.",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Arrange the emergency ordination of a grandchild to generate merit for the dying",
+        "effects": {
+          "karma": { "merit": 8, "demerit": 0 },
+          "stats": { "happiness": -2, "spiritualDev": 8, "health": 3 },
+          "relationships": [{ "target": "parent", "change": 10 }, { "target": "grandchild", "change": 3 }]
+        },
+        "outcomeText": "The grandchild's head is shaved at the bedside. The ordination is brief and solemn -- three days of monastic vows generating maximum merit directed entirely to the dying elder. The family gathers for the yaat nam water-pouring ceremony, transferring merit. Whether the parent recovers or passes, the merit eases their journey. Once dead, merit is the ONLY power that can reach a person. The emergency ordination is a final gift of love."
+      },
+      {
+        "id": "b",
+        "text": "Focus on hospital treatment and modern medicine",
+        "effects": {
+          "karma": { "merit": 1, "demerit": 0 },
+          "stats": { "happiness": -3, "spiritualDev": 0, "wealth": -8 },
+          "relationships": [{ "target": "parent", "change": 3 }]
+        },
+        "outcomeText": "You pour resources into medical treatment. The doctors do their best. The hospital bills mount. Whether your parent recovers depends on factors beyond anyone's control. The medical approach may extend life, but it does not address the spiritual dimension -- and in Buddhist cosmology, the spiritual dimension is what matters most at the end. A good death (old, meritorious, calm) leads to a good rebirth. Medicine can delay death; only merit can improve what comes after."
+      },
+      {
+        "id": "c",
+        "text": "Combine both -- hospital treatment and merit-making ceremonies",
+        "effects": {
+          "karma": { "merit": 6, "demerit": 0 },
+          "stats": { "happiness": -1, "spiritualDev": 5, "wealth": -10, "health": 2 },
+          "relationships": [{ "target": "parent", "change": 8 }]
+        },
+        "outcomeText": "You keep your parent in the hospital while monks chant at the bedside, and you arrange for merit-making ceremonies at the temple. It is expensive to pursue both paths, but it covers all bases: the body receives medical care while the spirit receives karmic care. Your parent, whether they recover or pass, is surrounded by both the technology of modernity and the ancient spiritual infrastructure that has accompanied Southeast Asian Buddhists through millennia of dying."
+      }
+    ],
+    "tags": ["illness", "death", "emergency-ordination", "merit-transfer", "healing"],
+    "source": "Knowledge base: Buddhist concepts -- emergency ordination, merit transfer, good death"
+  },
+  {
+    "id": "sh_youngadult_002",
+    "title": "The Social Media Monk",
+    "country": "shared",
+    "lifeStage": "young_adulthood",
+    "minAge": 18,
+    "maxAge": 35,
+    "karmaRange": [-100, 100],
+    "description": "A charismatic young monk has gone viral on social media, posting short dhamma talks, meditation tips, and mindfulness challenges. His Instagram has 500,000 followers. Traditional monks criticize him for vanity and 'performing' the dhamma. Young people say he is the only monk who speaks their language. Your temple's abbot asks for your opinion.",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Support the social media monk -- the dhamma must reach people where they are",
+        "effects": {
+          "karma": { "merit": 4, "demerit": 0 },
+          "stats": { "happiness": 4, "spiritualDev": 3, "socialStatus": 3 },
+          "relationships": [{ "target": "youth", "change": 5 }]
+        },
+        "outcomeText": "You argue that the Buddha himself adapted his teaching to his audience -- merchants heard parables about trade, farmers heard metaphors about seeds and soil. Why should the dhamma not adapt to social media? Khun Mae Tritrinn in Thailand uses Facebook to teach dhamma to 429,000 followers. Temples in Vietnam use streaming for announcements and outreach. The medium changes; the message endures. The abbot listens thoughtfully."
+      },
+      {
+        "id": "b",
+        "text": "Side with the traditionalists -- the dhamma is cheapened by likes and followers",
+        "effects": {
+          "karma": { "merit": 3, "demerit": 0 },
+          "stats": { "happiness": -1, "spiritualDev": 4 },
+          "relationships": [{ "target": "elders", "change": 5 }]
+        },
+        "outcomeText": "You tell the abbot that the Vinaya does not mention Instagram but its spirit is clear: monks should be humble, not celebrities. The 227 rules were designed to prevent exactly this kind of self-promotion. The dhamma spoken in a quiet monastery carries a weight that a fifteen-second video cannot. The abbot nods. But later, you notice that the young people in the temple are watching the social media monk's videos on their phones during breaks."
+      },
+      {
+        "id": "c",
+        "text": "Suggest a middle path -- the monk can use social media but should direct people to temples",
+        "effects": {
+          "karma": { "merit": 5, "demerit": 0 },
+          "stats": { "happiness": 3, "spiritualDev": 5 },
+          "relationships": [{ "target": "youth", "change": 3 }, { "target": "elders", "change": 3 }]
+        },
+        "outcomeText": "You propose that social media can be a gateway: short videos draw attention, but real practice requires sitting in a monastery, not scrolling a feed. The abbot approves the compromise. The social media monk begins ending every post with: 'This is a taste. Come to the temple for the meal.' The approach bridges the generational divide. Young people follow the monk online; some of them show up at the temple. The dhamma, as always, finds a way."
+      }
+    ],
+    "tags": ["social-media", "modernity", "monks", "youth", "outreach", "adaptation"],
+    "source": "Knowledge base: Cross-cutting themes -- Youth and Modernity, social media dhamma"
+  },
+  {
+    "id": "sh_elderhood_001",
+    "title": "Preparing for a Good Death",
+    "country": "shared",
+    "lifeStage": "elderhood",
+    "minAge": 60,
+    "maxAge": 90,
+    "karmaRange": [-100, 100],
+    "description": "You are aging. The question that every Buddhist must eventually face is approaching: will your death be 'safe' or 'dangerous'? A 'good death' is old, meritorious, calm -- the dying person's mind is clear, their attachments dissolved, their merit abundant. A 'dangerous death' is young, violent, full of emotional attachment. The quality of your final thoughts determines your rebirth. How do you prepare?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Intensify your practice: daily meditation, strict precept-keeping, regular merit-making",
+        "effects": {
+          "karma": { "merit": 10, "demerit": 0 },
+          "stats": { "happiness": 3, "spiritualDev": 15, "health": 2 },
+          "relationships": [{ "target": "community", "change": 5 }]
+        },
+        "outcomeText": "You devote your remaining years to spiritual preparation. The three marks of existence -- anicca, dukkha, anatta -- become not abstract philosophy but lived experience. You meditate daily, watching thoughts arise and dissolve. You keep the eight precepts. You give generously. The monks say your face has changed -- it carries the calm of someone who is ready. When death comes, it will find you prepared: no unfinished business, no grasping attachment, no residual wot. This is the good death."
+      },
+      {
+        "id": "b",
+        "text": "Focus on settling worldly affairs: debts, feuds, and family obligations",
+        "effects": {
+          "karma": { "merit": 4, "demerit": 0 },
+          "stats": { "happiness": 2, "spiritualDev": 3, "socialStatus": 5 },
+          "relationships": [{ "target": "family", "change": 8 }]
+        },
+        "outcomeText": "You pay off debts, reconcile with estranged relatives, and ensure your children's futures are secure. The worldly affairs are put in order. This is necessary preparation -- unresolved attachments create the 'dangerous death' that traps the spirit between worlds. But the monks remind you: worldly preparation without spiritual preparation is only half the work. The final thoughts that determine your rebirth are shaped not by your bank balance but by the quality of your consciousness."
+      },
+      {
+        "id": "c",
+        "text": "Refuse to think about death -- there is still time to live",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 3 },
+          "stats": { "happiness": 4, "spiritualDev": -5 },
+          "relationships": []
+        },
+        "outcomeText": "You push the thought away and focus on daily pleasures. But the Buddha's first teaching was dukkha -- the unsatisfactoriness of existence, which includes its impermanence. Refusing to face death does not prevent it; it merely ensures you will be unprepared when it arrives. The elders who sleep at the temple have spent years cultivating the emotional control needed for a good death. Your avoidance is the opposite of that preparation. When the time comes, your unreadiness may drag you into a dangerous passage."
+      }
+    ],
+    "tags": ["death", "good-death", "preparation", "impermanence", "rebirth", "elderhood"],
+    "source": "Knowledge base: Buddhist concepts -- rebirth, good vs. dangerous death, emotional control"
+  }
+]

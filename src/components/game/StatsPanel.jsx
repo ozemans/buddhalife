@@ -6,7 +6,7 @@ const STAT_CONFIG = [
   { key: 'wealth', label: 'Wealth', icon: '\u2B50' },
   { key: 'wisdom', label: 'Wisdom', icon: '\u{1F4D6}' },
   { key: 'socialStanding', label: 'Social Standing', icon: '\u{1F465}' },
-  { key: 'spiritualDevelopment', label: 'Spiritual', icon: '\u2638' },
+  { key: 'spiritualDev', label: 'Spiritual', icon: '\u2638' },
 ];
 
 function getBarColor(value) {

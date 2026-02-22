@@ -39,14 +39,15 @@ export default function GameScreen({
 
   const {
     character = {},
-    age = 0,
-    year = 2000,
     stats = {},
     karma = { merit: 0, demerit: 0, momentum: 0 },
     currentEvent = null,
-    timeline = [],
+    lifeEvents = [],
   } = state || {};
 
+  const age = character.age || 0;
+  const birthYear = character.birthYear || 2000;
+  const year = birthYear + age;
   const lifeStage = getLifeStage(age);
   const countryFlag = COUNTRY_FLAGS[character.country] || '';
   const countryName = character.country
@@ -169,12 +170,12 @@ export default function GameScreen({
           </div>
 
           {/* Timeline at bottom */}
-          {timeline.length > 0 && (
+          {lifeEvents.length > 0 && (
             <div className="mt-6 border-t border-charcoal-700 pt-4">
               <h3 className="text-xs font-medium text-charcoal-400 uppercase tracking-wider mb-3">
                 Life Timeline
               </h3>
-              <Timeline events={timeline} />
+              <Timeline events={lifeEvents} />
             </div>
           )}
         </main>

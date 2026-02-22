@@ -29,21 +29,21 @@ function getKarmicAssessment(karma) {
 export default function EndScreen({ state, onRestart }) {
   const {
     character = {},
-    age = 0,
     karma = { merit: 0, demerit: 0, momentum: 0 },
-    timeline = [],
+    lifeEvents = [],
   } = state || {};
 
+  const age = character.age || 0;
   const countryFlag = COUNTRY_FLAGS[character.country] || '';
   const countryName = character.country
     ? character.country.charAt(0).toUpperCase() + character.country.slice(1)
     : 'Unknown';
 
-  const keyMoments = timeline
+  const keyMoments = lifeEvents
     .filter((e) => e.isKeyMoment || e.significant)
     .slice(0, 6);
 
-  const displayMoments = keyMoments.length > 0 ? keyMoments : timeline.slice(-6);
+  const displayMoments = keyMoments.length > 0 ? keyMoments : lifeEvents.slice(-6);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start px-4 py-8 md:py-16">
@@ -72,13 +72,13 @@ export default function EndScreen({ state, onRestart }) {
           </div>
           <div className="text-center">
             <span className="block text-3xl font-serif font-bold text-forest-400">
-              {karma.merit || 0}
+              {Math.round(karma.merit || 0)}
             </span>
             <span className="block text-xs text-charcoal-400 mt-1">Merit</span>
           </div>
           <div className="text-center">
             <span className="block text-3xl font-serif font-bold text-red-400">
-              {karma.demerit || 0}
+              {Math.round(karma.demerit || 0)}
             </span>
             <span className="block text-xs text-charcoal-400 mt-1">Demerit</span>
           </div>

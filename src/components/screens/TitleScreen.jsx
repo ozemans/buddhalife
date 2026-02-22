@@ -47,7 +47,11 @@ export default function TitleScreen({ onStartGame, backgrounds }) {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedBackground, setSelectedBackground] = useState(null);
 
-  const bgOptions = backgrounds || BACKGROUNDS;
+  // backgrounds is a nested object { thailand: [...], myanmar: [...] }
+  // Show country-specific options when a country is selected, or generic fallback
+  const bgOptions = (backgrounds && selectedCountry && Array.isArray(backgrounds[selectedCountry]))
+    ? backgrounds[selectedCountry]
+    : BACKGROUNDS;
 
   const canStart = name.trim().length > 0 && selectedCountry && selectedBackground;
 
@@ -97,7 +101,7 @@ export default function TitleScreen({ onStartGame, backgrounds }) {
           {COUNTRIES.map((country) => (
             <button
               key={country.id}
-              onClick={() => setSelectedCountry(country.id)}
+              onClick={() => { setSelectedCountry(country.id); setSelectedBackground(null); }}
               className={`flex items-start gap-3 px-4 py-3 rounded-xl border text-left
                 transition-all duration-200 cursor-pointer
                 ${selectedCountry === country.id

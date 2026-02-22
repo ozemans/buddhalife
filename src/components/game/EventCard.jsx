@@ -42,9 +42,9 @@ export default function EventCard({ event, onChoice }) {
 
           {/* Narrative text */}
           <p className="text-base md:text-lg leading-relaxed text-charcoal-100 font-serif mb-6">
-            {showOutcome && selectedChoice?.outcome
-              ? selectedChoice.outcome
-              : event.narrative}
+            {showOutcome && selectedChoice?.outcomeText
+              ? selectedChoice.outcomeText
+              : event.description}
           </p>
 
           {/* Choices or Continue */}
@@ -65,7 +65,7 @@ export default function EventCard({ event, onChoice }) {
                   <span className="inline-block w-6 h-6 mr-3 text-center text-xs
                     leading-6 rounded-full bg-saffron-500/15 text-saffron-400
                     group-hover:bg-saffron-500/25 transition-colors duration-200">
-                    {String.fromCharCode(64 + choice.id)}
+                    {choice.id.toUpperCase()}
                   </span>
                   {choice.text}
                 </button>

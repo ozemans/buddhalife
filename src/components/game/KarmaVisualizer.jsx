@@ -15,14 +15,14 @@ function getStage(netKarma) {
 }
 
 function getMomentumLabel(momentum) {
-  if (momentum > 5) return 'Rising';
-  if (momentum < -5) return 'Falling';
+  if (momentum > 0.1) return 'Rising';
+  if (momentum < -0.1) return 'Falling';
   return 'Steady';
 }
 
 function getMomentumColor(momentum) {
-  if (momentum > 5) return 'text-forest-400';
-  if (momentum < -5) return 'text-red-400';
+  if (momentum > 0.1) return 'text-forest-400';
+  if (momentum < -0.1) return 'text-red-400';
   return 'text-charcoal-300';
 }
 
@@ -55,8 +55,8 @@ export default function KarmaVisualizer({ karma = { merit: 0, demerit: 0, moment
       {/* Merit / Demerit bar */}
       <div className="mb-4 px-2">
         <div className="flex items-center justify-between mb-1.5 text-xs text-charcoal-300">
-          <span>Merit: {merit}</span>
-          <span>Demerit: {demerit}</span>
+          <span>Merit: {Math.round(merit)}</span>
+          <span>Demerit: {Math.round(demerit)}</span>
         </div>
         <div className="h-3 rounded-full bg-charcoal-700 overflow-hidden flex">
           <div

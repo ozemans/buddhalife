@@ -4,6 +4,7 @@ import EventCard from '../game/EventCard';
 import AgeAdvance from '../game/AgeAdvance';
 import Timeline from '../game/Timeline';
 import KarmaVisualizer from '../game/KarmaVisualizer';
+import SoundToggle from '../ui/SoundToggle';
 
 const COUNTRY_FLAGS = {
   thailand: '\uD83C\uDDF9\uD83C\uDDED',
@@ -245,6 +246,7 @@ export default function GameScreen({
     karma = { merit: 0, demerit: 0, momentum: 0 },
     currentEvent = null,
     lifeEvents = [],
+    relationships = [],
     lifeStage: stateLifeStage,
   } = state || {};
 
@@ -293,7 +295,7 @@ export default function GameScreen({
 
   const renderGameContent = () => {
     if (currentEvent) {
-      return <EventCard event={currentEvent} onChoice={onMakeChoice} />;
+      return <EventCard event={currentEvent} onChoice={onMakeChoice} relationships={relationships} />;
     }
     return (
       <AgeAdvance
@@ -357,6 +359,7 @@ export default function GameScreen({
           >
             Age: {age}
           </span>
+          <SoundToggle />
           <button
             onClick={(e) => {
               e.stopPropagation();

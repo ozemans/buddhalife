@@ -21,6 +21,7 @@ export const ACTIONS = {
   RETURN_TO_TITLE: 'RETURN_TO_TITLE',
   DISMISS_EVENT: 'DISMISS_EVENT',
   RESTORE_SAVE: 'RESTORE_SAVE',
+  SET_RELATIONSHIPS: 'SET_RELATIONSHIPS',
 };
 
 const initialState = {
@@ -183,6 +184,9 @@ function gameReducer(state, action) {
     case ACTIONS.RESTORE_SAVE:
       // Replace entire state with saved data
       return { ...action.payload };
+
+    case ACTIONS.SET_RELATIONSHIPS:
+      return { ...state, relationships: action.payload };
 
     default:
       return state;

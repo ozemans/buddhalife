@@ -33,45 +33,51 @@ const COUNTRIES = [
   },
 ];
 
-function ProgressDots({ current, total }) {
-  return (
-    <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 32 }}>
-      {Array.from({ length: total }, (_, i) => (
-        <div
-          key={i}
-          style={{
-            width: i === current ? 24 : 8,
-            height: 8,
-            borderRadius: 4,
-            backgroundColor: i === current ? '#E8960C' : '#D1D1D6',
-            transition: 'all 0.3s ease',
-          }}
-        />
-      ))}
-    </div>
-  );
+const NAMES = {
+  thailand: {
+    male: ['Somchai', 'Arthit', 'Nattapong', 'Prasert', 'Kittisak', 'Wichai', 'Sompong', 'Tanakorn', 'Prayut', 'Surasak'],
+    female: ['Siriporn', 'Malai', 'Nanthana', 'Kanokwan', 'Ploy', 'Arunee', 'Suwannee', 'Duangjai', 'Ratchanee', 'Kanya'],
+  },
+  myanmar: {
+    male: ['Aung', 'Kyaw', 'Zaw', 'Htun', 'Maung', 'Thet', 'Ye', 'Naing', 'Myo', 'Ko Ko'],
+    female: ['Aye', 'Khin', 'Tin', 'May', 'Nwe', 'Su', 'Wai', 'Phyu', 'Cho', 'Hla'],
+  },
+  cambodia: {
+    male: ['Sokha', 'Chanthea', 'Vibol', 'Rith', 'Dara', 'Piseth', 'Rithy', 'Kosal', 'Chamroeun', 'Vanna'],
+    female: ['Sreymom', 'Chantrea', 'Bopha', 'Kunthea', 'Srey Leak', 'Malis', 'Kolab', 'Channary', 'Theary', 'Rachana'],
+  },
+  vietnam: {
+    male: ['Minh', 'Duc', 'Thanh', 'Hieu', 'Hung', 'Tuan', 'Quang', 'Long', 'Duy', 'Phong'],
+    female: ['Lan', 'Mai', 'Huong', 'Linh', 'Thao', 'Ngoc', 'Anh', 'Trang', 'Ha', 'Phuong'],
+  },
+  laos: {
+    male: ['Bounmy', 'Khampha', 'Somphet', 'Vilay', 'Keo', 'Somphone', 'Bounsang', 'Thongkham', 'Phet', 'Souphanouvong'],
+    female: ['Bouachanh', 'Khamla', 'Chansouk', 'Viengkham', 'Dao', 'Keo', 'Souliya', 'Manivanh', 'Phimpha', 'Noi'],
+  },
+};
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 export default function TitleScreen({ onStartGame, backgrounds, hasSavedGame, onContinue }) {
   const [step, setStep] = useState(0);
   const [selectedCountry, setSelectedCountry] = useState(null);
-  const [name, setName] = useState('');
-  const [gender, setGender] = useState(null);
-  const [selectedBackground, setSelectedBackground] = useState(null);
 
-  const bgOptions =
-    backgrounds && selectedCountry && Array.isArray(backgrounds[selectedCountry])
-      ? backgrounds[selectedCountry]
-      : [];
+  const handleBeginLife = () => {
+    if (!selectedCountry) return;
 
-  const handleStartLife = () => {
-    if (!name.trim() || !gender || !selectedBackground) return;
-    onStartGame({
-      name: name.trim(),
-      country: selectedCountry,
-      background: selectedBackground,
-      gender,
-    });
+    const gender = Math.random() < 0.5 ? 'male' : 'female';
+    const countryNames = NAMES[selectedCountry]?.[gender] || NAMES.thailand.male;
+    const name = pickRandom(countryNames);
+
+    const bgOptions =
+      backgrounds && Array.isArray(backgrounds[selectedCountry])
+        ? backgrounds[selectedCountry]
+        : [];
+    const background = bgOptions.length > 0 ? pickRandom(bgOptions).id : 'unknown';
+
+    onStartGame({ name, country: selectedCountry, background, gender });
   };
 
   // Step 0: Title
@@ -111,168 +117,60 @@ export default function TitleScreen({ onStartGame, backgrounds, hasSavedGame, on
     );
   }
 
-  // Step 1: Country Selection
-  if (step === 1) {
-    return (
-      <div style={styles.container}>
-        <div style={styles.inner}>
-          <ProgressDots current={0} total={3} />
-          <h2 style={styles.stepTitle}>Choose Your Country</h2>
-          <p style={styles.stepSubtitle}>Where will your life begin?</p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%', marginTop: 24 }}>
-            {COUNTRIES.map((country) => {
-              const isSelected = selectedCountry === country.id;
-              return (
-                <button
-                  key={country.id}
-                  onClick={() => {
-                    setSelectedCountry(country.id);
-                    setSelectedBackground(null);
-                  }}
-                  style={{
-                    ...styles.countryCard,
-                    borderColor: isSelected ? '#34C759' : '#E5E5EA',
-                    backgroundColor: '#FFFFFF',
-                    position: 'relative',
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, width: '100%' }}>
-                    <span style={{ fontSize: 48, lineHeight: 1, flexShrink: 0 }}>{country.flag}</span>
-                    <div style={{ textAlign: 'left', flex: 1 }}>
-                      <span style={{ fontSize: 18, fontWeight: 700, color: '#1D1D1F', display: 'block' }}>
-                        {country.name}
-                      </span>
-                      <span style={{ fontSize: 14, color: '#6E6E73', display: 'block', marginTop: 2, lineHeight: 1.4 }}>
-                        {country.teaser}
-                      </span>
-                    </div>
-                    {isSelected && (
-                      <span style={{ fontSize: 22, color: '#34C759', flexShrink: 0 }}>✓</span>
-                    )}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          <div style={{ width: '100%', marginTop: 'auto', paddingTop: 24, paddingBottom: 16 }}>
-            <button
-              onClick={() => {
-                if (selectedCountry) setStep(2);
-              }}
-              disabled={!selectedCountry}
-              style={{
-                ...styles.primaryButton,
-                opacity: selectedCountry ? 1 : 0.4,
-                cursor: selectedCountry ? 'pointer' : 'not-allowed',
-              }}
-              onMouseDown={(e) => { if (selectedCountry) e.currentTarget.style.transform = 'scale(0.97)'; }}
-              onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
-            >
-              Begin
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Step 2: Character Creation
+  // Step 1: Country Selection → auto-start
   return (
     <div style={styles.container}>
       <div style={styles.inner}>
-        <ProgressDots current={2} total={3} />
-        <h2 style={styles.stepTitle}>Create Your Character</h2>
-        <p style={styles.stepSubtitle}>Who will you be?</p>
+        <h2 style={styles.stepTitle}>Choose Your Country</h2>
+        <p style={styles.stepSubtitle}>Where will your life begin?</p>
 
-        <div style={{ width: '100%', marginTop: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
-          {/* Name input */}
-          <div>
-            <label style={styles.fieldLabel}>Your Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your name..."
-              maxLength={24}
-              style={styles.textInput}
-            />
-          </div>
-
-          {/* Gender selection */}
-          <div>
-            <label style={styles.fieldLabel}>Gender</label>
-            <div style={{ display: 'flex', gap: 12 }}>
-              {[
-                { id: 'male', emoji: '👨', label: 'Male' },
-                { id: 'female', emoji: '👩', label: 'Female' },
-              ].map((g) => {
-                const isSelected = gender === g.id;
-                return (
-                  <button
-                    key={g.id}
-                    onClick={() => setGender(g.id)}
-                    style={{
-                      ...styles.pill,
-                      flex: 1,
-                      borderColor: isSelected ? '#E8960C' : '#D1D1D6',
-                      backgroundColor: isSelected ? 'rgba(232, 150, 12, 0.08)' : '#F2F2F7',
-                      color: isSelected ? '#E8960C' : '#1D1D1F',
-                      fontWeight: isSelected ? 600 : 400,
-                    }}
-                  >
-                    <span style={{ fontSize: 24, marginRight: 8 }}>{g.emoji}</span>
-                    {g.label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Family background */}
-          <div>
-            <label style={styles.fieldLabel}>Family Background</label>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {bgOptions.map((bg) => {
-                const isSelected = selectedBackground === bg.id;
-                return (
-                  <button
-                    key={bg.id}
-                    onClick={() => setSelectedBackground(bg.id)}
-                    style={{
-                      ...styles.bgPill,
-                      borderColor: isSelected ? '#E8960C' : '#D1D1D6',
-                      backgroundColor: isSelected ? 'rgba(232, 150, 12, 0.08)' : '#F2F2F7',
-                      color: isSelected ? '#E8960C' : '#1D1D1F',
-                      fontWeight: isSelected ? 600 : 400,
-                    }}
-                  >
-                    {bg.label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%', marginTop: 24 }}>
+          {COUNTRIES.map((country) => {
+            const isSelected = selectedCountry === country.id;
+            return (
+              <button
+                key={country.id}
+                onClick={() => setSelectedCountry(country.id)}
+                style={{
+                  ...styles.countryCard,
+                  borderColor: isSelected ? '#34C759' : '#E5E5EA',
+                  backgroundColor: '#FFFFFF',
+                  position: 'relative',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14, width: '100%' }}>
+                  <span style={{ fontSize: 48, lineHeight: 1, flexShrink: 0 }}>{country.flag}</span>
+                  <div style={{ textAlign: 'left', flex: 1 }}>
+                    <span style={{ fontSize: 18, fontWeight: 700, color: '#1D1D1F', display: 'block' }}>
+                      {country.name}
+                    </span>
+                    <span style={{ fontSize: 14, color: '#6E6E73', display: 'block', marginTop: 2, lineHeight: 1.4 }}>
+                      {country.teaser}
+                    </span>
+                  </div>
+                  {isSelected && (
+                    <span style={{ fontSize: 22, color: '#34C759', flexShrink: 0 }}>✓</span>
+                  )}
+                </div>
+              </button>
+            );
+          })}
         </div>
 
         <div style={{ width: '100%', marginTop: 'auto', paddingTop: 24, paddingBottom: 16 }}>
           <button
-            onClick={handleStartLife}
-            disabled={!name.trim() || !gender || !selectedBackground}
+            onClick={handleBeginLife}
+            disabled={!selectedCountry}
             style={{
               ...styles.primaryButton,
-              opacity: name.trim() && gender && selectedBackground ? 1 : 0.4,
-              cursor: name.trim() && gender && selectedBackground ? 'pointer' : 'not-allowed',
+              opacity: selectedCountry ? 1 : 0.4,
+              cursor: selectedCountry ? 'pointer' : 'not-allowed',
             }}
-            onMouseDown={(e) => {
-              if (name.trim() && gender && selectedBackground) e.currentTarget.style.transform = 'scale(0.97)';
-            }}
+            onMouseDown={(e) => { if (selectedCountry) e.currentTarget.style.transform = 'scale(0.97)'; }}
             onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
           >
-            Start Life
+            Begin Life
           </button>
         </div>
       </div>
@@ -367,52 +265,5 @@ const styles = {
     boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
     display: 'flex',
     alignItems: 'center',
-  },
-  fieldLabel: {
-    display: 'block',
-    fontSize: 14,
-    fontWeight: 600,
-    color: '#6E6E73',
-    marginBottom: 8,
-    textTransform: 'uppercase',
-    letterSpacing: '0.04em',
-  },
-  textInput: {
-    width: '100%',
-    padding: '14px 16px',
-    borderRadius: 12,
-    border: '1px solid #D1D1D6',
-    backgroundColor: '#F2F2F7',
-    fontSize: 16,
-    color: '#1D1D1F',
-    outline: 'none',
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    transition: 'border-color 0.2s ease',
-    boxSizing: 'border-box',
-  },
-  pill: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '12px 16px',
-    borderRadius: 12,
-    border: '2px solid #D1D1D6',
-    backgroundColor: '#F2F2F7',
-    fontSize: 16,
-    cursor: 'pointer',
-    transition: 'all 0.2s ease',
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-  },
-  bgPill: {
-    width: '100%',
-    textAlign: 'left',
-    padding: '12px 16px',
-    borderRadius: 12,
-    border: '2px solid #D1D1D6',
-    backgroundColor: '#F2F2F7',
-    fontSize: 15,
-    cursor: 'pointer',
-    transition: 'all 0.2s ease',
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
   },
 };

@@ -117,6 +117,62 @@ function getStatEmoji(key) {
   return map[key] || '\uD83D\uDCCA';
 }
 
+function getKarmaHint(choice) {
+  const karma = choice?.effects?.karma;
+  if (!karma) return null;
+  const merit = karma.merit || 0;
+  const demerit = karma.demerit || 0;
+  if (merit === 0 && demerit === 0) return null;
+  if (merit > 0 && demerit === 0) return { symbol: '☸️', color: '#34C759', label: 'Virtuous' };
+  if (demerit > 0 && merit === 0) return { symbol: '⚠️', color: '#FF9500', label: 'Unwholesome' };
+  if (merit > 0 && demerit > 0) return { symbol: '⚖️', color: '#8E8E93', label: 'Complex' };
+  return null;
+}
+
+/**
+ * Personalize event text by replacing generic terms with NPC names.
+ * Only replaces the first occurrence of each pattern to keep text natural.
+ */
+function personalizeText(text, relationships, eventTags) {
+  if (!text || !relationships || relationships.length === 0) return text;
+
+  let result = text;
+  const alive = relationships.filter(r => r.alive !== false);
+
+  // Find specific NPCs by role
+  const mother = alive.find(r => r.role === 'mother');
+  const father = alive.find(r => r.role === 'father');
+  const monk = alive.find(r => r.type === 'mentor' && r.role === 'monk');
+  const sibling = alive.find(r => r.role === 'sibling');
+  const friend = alive.find(r => r.type === 'friend');
+
+  // Replace generic mentions with personalized versions (first occurrence only)
+  if (mother) {
+    result = result.replace(/\byour mother\b/i, `your mother, ${mother.name},`);
+    result = result.replace(/\bYour mother\b/, `Your mother, ${mother.name},`);
+  }
+  if (father) {
+    result = result.replace(/\byour father\b/i, `your father, ${father.name},`);
+    result = result.replace(/\bYour father\b/, `Your father, ${father.name},`);
+  }
+  if (monk) {
+    result = result.replace(/\ba monk\b/, `${monk.name}, a monk`);
+    result = result.replace(/\bthe monk\b/, `${monk.name}`);
+    result = result.replace(/\bThe monk\b/, `${monk.name}`);
+  }
+  if (sibling) {
+    result = result.replace(/\byour sibling\b/i, `your sibling, ${sibling.name},`);
+    result = result.replace(/\byour brother\b/i, `your ${sibling.description === 'Your brother' ? 'brother' : 'sibling'}, ${sibling.name},`);
+    result = result.replace(/\byour sister\b/i, `your ${sibling.description === 'Your sister' ? 'sister' : 'sibling'}, ${sibling.name},`);
+  }
+  if (friend) {
+    result = result.replace(/\byour friend\b/i, `your friend, ${friend.name},`);
+    result = result.replace(/\bYour friend\b/, `Your friend, ${friend.name},`);
+  }
+
+  return result;
+}
+
 function extractStatChanges(choice) {
   const changes = [];
   if (!choice || !choice.effects) return changes;
@@ -157,13 +213,14 @@ function extractStatChanges(choice) {
   return changes;
 }
 
-export default function EventCard({ event, onChoice }) {
+export default function EventCard({ event, onChoice, relationships }) {
   const [selectedChoice, setSelectedChoice] = useState(null);
   const [showOutcome, setShowOutcome] = useState(false);
 
-  const bodyText = showOutcome && selectedChoice?.outcomeText
+  const rawBodyText = showOutcome && selectedChoice?.outcomeText
     ? selectedChoice.outcomeText
     : (event?.description || '');
+  const bodyText = personalizeText(rawBodyText, relationships, event?.tags);
   const bodySegments = useMemo(() => highlightTerms(bodyText), [bodyText]);
 
   if (!event) return null;
@@ -313,6 +370,24 @@ export default function EventCard({ event, onChoice }) {
                 {getChoiceEmoji(choice.text, index)}
               </span>
               <span>{choice.text}</span>
+              {(() => {
+                const hint = getKarmaHint(choice);
+                return hint ? (
+                  <span style={{
+                    marginLeft: 'auto',
+                    fontSize: 11,
+                    color: hint.color,
+                    fontWeight: 500,
+                    opacity: 0.7,
+                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 4,
+                  }}>
+                    <span style={{ fontSize: 14 }}>{hint.symbol}</span>
+                  </span>
+                ) : null;
+              })()}
             </button>
           ))}
         </div>

@@ -4,6 +4,8 @@ import { selectEvent } from './engine/eventSelector.js';
 import { advanceYear, checkDeath, getRebirthPrognosis } from './engine/lifeProgression.js';
 import { applyChoice } from './engine/consequences.js';
 import { checkForFestival, createFestivalEvent } from './engine/festivalEngine.js';
+import { generateStartingNPCs, ageNPCs } from './engine/npcEngine.js';
+import { initAudio, playBell, playChime, playMeritSound, playDemeritSound, isMuted } from './engine/audioEngine.js';
 
 import TitleScreen from './components/screens/TitleScreen.jsx';
 import GameScreen from './components/screens/GameScreen.jsx';
@@ -104,6 +106,7 @@ export default function App() {
 
   // Handle starting a new game
   const handleStartGame = useCallback((character) => {
+    initAudio();
     dispatch({
       type: ACTIONS.START_GAME,
       payload: {
@@ -114,6 +117,10 @@ export default function App() {
         gender: character.gender || 'any',
       },
     });
+
+    // Generate starting NPCs and set them as relationships
+    const startingNPCs = generateStartingNPCs(character.country, character.background);
+    dispatch({ type: ACTIONS.SET_RELATIONSHIPS, payload: startingNPCs });
   }, [dispatch]);
 
   // Handle advancing one year
@@ -123,6 +130,9 @@ export default function App() {
 
     // 2. Apply the year advancement
     dispatch({ type: ACTIONS.ADVANCE_YEAR, payload: yearChanges });
+
+    // Ambient bell on each year advance
+    if (!isMuted()) playBell();
 
     // 3. Check for death
     const nextState = {
@@ -145,6 +155,47 @@ export default function App() {
         payload: { rebirthPrognosis: prognosis },
       });
       return;
+    }
+
+    // 3b. Age NPCs — check for deaths
+    const { relationships: agedRelationships, deathNotification } = ageNPCs(
+      state.relationships,
+      nextState.character.age
+    );
+    if (agedRelationships !== state.relationships) {
+      dispatch({ type: ACTIONS.SET_RELATIONSHIPS, payload: agedRelationships });
+    }
+    if (deathNotification) {
+      dispatch({
+        type: ACTIONS.TRIGGER_EVENT,
+        payload: {
+          id: `npc_death_${Date.now()}`,
+          title: 'A Loss in the Family',
+          description: deathNotification,
+          tags: ['family', 'death', 'funeral'],
+          choices: [
+            {
+              id: 'a',
+              text: 'Attend the funeral and make merit offerings',
+              effects: {
+                karma: { merit: 3, demerit: 0 },
+                stats: { happiness: -5, spiritualDev: 3 },
+              },
+              outcomeText: 'You honor their memory with prayers and offerings. The merit made brings some comfort.',
+            },
+            {
+              id: 'b',
+              text: 'Grieve quietly and reflect on impermanence',
+              effects: {
+                karma: { merit: 1, demerit: 0 },
+                stats: { happiness: -3, wisdom: 4 },
+              },
+              outcomeText: 'In your grief, you contemplate the Buddha\'s teaching on anicca — all things are impermanent.',
+            },
+          ],
+        },
+      });
+      return; // Death event takes priority this year
     }
 
     // 4. Check for festival event
@@ -189,6 +240,16 @@ export default function App() {
       type: ACTIONS.MAKE_CHOICE,
       payload: { choice: adapted, consequences },
     });
+
+    // Audio cues for choices
+    if (!isMuted()) {
+      playChime();
+      if (adapted.karmaEffect === 'positive') {
+        setTimeout(playMeritSound, 300);
+      } else if (adapted.karmaEffect === 'negative') {
+        setTimeout(playDemeritSound, 300);
+      }
+    }
   }, [state, dispatch]);
 
   // Handle continuing from a saved game

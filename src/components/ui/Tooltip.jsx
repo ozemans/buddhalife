@@ -26,6 +26,7 @@ export default function Tooltip({ term, definition, children }) {
     [],
   );
 
+  const toggle = () => setVisible((v) => !v);
   const show = () => setVisible(true);
   const hide = () => setVisible(false);
 
@@ -35,32 +36,31 @@ export default function Tooltip({ term, definition, children }) {
       className="relative inline-block"
       onMouseEnter={show}
       onMouseLeave={hide}
-      onTouchStart={show}
-      onTouchEnd={hide}
+      onClick={toggle}
     >
-      <span className="border-b border-dashed border-saffron-400/60 cursor-help">
+      <span className="cursor-help text-text-primary font-medium">
         {children}
       </span>
       {visible && (
         <span
           ref={tooltipCallbackRef}
           className="absolute bottom-full mb-2 z-40
-            w-64 px-4 py-3 rounded-xl
-            bg-charcoal-700 border border-charcoal-500 shadow-xl
+            w-60 px-4 py-3 rounded-lg
+            bg-white border border-button-border shadow-md
             text-left
-            animate-[fadeIn_150ms_ease-out]
             pointer-events-none"
+          style={{ animation: 'fadeIn 150ms ease-out' }}
         >
-          <span className="block text-sm font-serif font-semibold text-temple-gold mb-1">
+          <span className="block text-sm font-semibold text-text-primary mb-0.5">
             {term}
           </span>
-          <span className="block text-xs leading-relaxed text-charcoal-200">
+          <span className="block text-xs leading-relaxed text-text-secondary">
             {definition}
           </span>
           <span className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0
             border-l-[6px] border-l-transparent
             border-r-[6px] border-r-transparent
-            border-t-[6px] border-t-charcoal-700" />
+            border-t-[6px] border-t-white" />
         </span>
       )}
     </span>

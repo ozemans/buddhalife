@@ -29,13 +29,215 @@ function getLifeStage(age) {
   return LIFE_STAGES.find((s) => age <= s.max)?.label || 'Elder';
 }
 
+function getAgeEmoji(age) {
+  if (age <= 2) return '\uD83D\uDC76';    // baby
+  if (age <= 12) return '\uD83E\uDDD2';   // child
+  if (age <= 17) return '\uD83D\uDC66';   // teen
+  if (age <= 64) return '\uD83D\uDC68';   // adult
+  return '\uD83E\uDDD3';                   // elder
+}
+
+const TABS = [
+  { id: 'karma', emoji: '\u2638\uFE0F', label: 'Karma' },
+  { id: 'health', emoji: '\u2764\uFE0F', label: 'Health' },
+  { id: 'wealth', emoji: '\uD83D\uDCB0', label: 'Wealth' },
+  { id: 'profile', emoji: '\uD83D\uDC64', label: 'Profile' },
+  { id: 'log', emoji: '\uD83D\uDCCB', label: 'Log' },
+];
+
+function WealthTab({ stats, lifeEvents }) {
+  const wealth = Math.max(0, Math.min(100, stats.wealth ?? 50));
+  const financialEvents = lifeEvents
+    .filter((e) => {
+      const tags = e.tags || [];
+      const title = (e.title || '').toLowerCase();
+      return (
+        tags.includes('financial') ||
+        tags.includes('wealth') ||
+        tags.includes('commerce') ||
+        tags.includes('sponsorship') ||
+        title.includes('money') ||
+        title.includes('wealth') ||
+        title.includes('market') ||
+        title.includes('gambling')
+      );
+    })
+    .slice(-5)
+    .reverse();
+
+  return (
+    <div style={{ padding: '24px 0' }}>
+      <div style={{ textAlign: 'center', marginBottom: 24 }}>
+        <span style={{ fontSize: 48 }}>{'\uD83D\uDCB0'}</span>
+        <div
+          style={{
+            fontSize: 32,
+            fontWeight: 700,
+            color: '#1D1D1F',
+            marginTop: 8,
+          }}
+        >
+          {wealth}
+        </div>
+        <div style={{ fontSize: 14, color: '#6E6E73' }}>Wealth</div>
+      </div>
+
+      <div style={{ margin: '0 auto', maxWidth: 300 }}>
+        <div
+          style={{
+            height: 12,
+            borderRadius: 6,
+            backgroundColor: '#F2F2F7',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              height: '100%',
+              width: `${wealth}%`,
+              borderRadius: 6,
+              backgroundColor:
+                wealth >= 70 ? '#34C759' : wealth >= 40 ? '#FF9500' : '#FF3B30',
+              transition: 'width 0.5s ease-out',
+            }}
+          />
+        </div>
+      </div>
+
+      {financialEvents.length > 0 && (
+        <div style={{ marginTop: 24 }}>
+          <div
+            style={{
+              fontSize: 12,
+              fontWeight: 600,
+              color: '#6E6E73',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: 12,
+            }}
+          >
+            Recent Financial Events
+          </div>
+          {financialEvents.map((ev, i) => (
+            <div
+              key={i}
+              style={{
+                padding: '10px 0',
+                borderBottom: '1px solid #F2F2F7',
+                fontSize: 14,
+                color: '#1D1D1F',
+              }}
+            >
+              <span style={{ color: '#6E6E73', marginRight: 8 }}>
+                Age {ev.age}
+              </span>
+              {ev.title}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProfileTab({ character, age, lifeStage }) {
+  const countryFlag = COUNTRY_FLAGS[character.country] || '';
+  const countryName = character.country
+    ? character.country.charAt(0).toUpperCase() + character.country.slice(1)
+    : '';
+
+  return (
+    <div style={{ padding: '24px 0', textAlign: 'center' }}>
+      <span style={{ fontSize: 64 }}>{getAgeEmoji(age)}</span>
+      <div
+        style={{
+          fontSize: 24,
+          fontWeight: 700,
+          color: '#1D1D1F',
+          marginTop: 12,
+          letterSpacing: '-0.02em',
+        }}
+      >
+        {character.name || 'Unknown'}
+      </div>
+      <div style={{ fontSize: 16, color: '#6E6E73', marginTop: 4 }}>
+        Age {age} {'\u00B7'} {lifeStage}
+      </div>
+      <div style={{ fontSize: 16, color: '#6E6E73', marginTop: 4 }}>
+        {countryFlag} {countryName}
+      </div>
+
+      {character.background && (
+        <div
+          style={{
+            marginTop: 24,
+            padding: '16px',
+            backgroundColor: '#F5F5F7',
+            borderRadius: 12,
+            textAlign: 'left',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 12,
+              fontWeight: 600,
+              color: '#6E6E73',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: 8,
+            }}
+          >
+            Background
+          </div>
+          <div style={{ fontSize: 14, color: '#1D1D1F', lineHeight: 1.5 }}>
+            {character.background}
+          </div>
+        </div>
+      )}
+
+      <div
+        style={{
+          marginTop: 16,
+          padding: '16px',
+          backgroundColor: '#F5F5F7',
+          borderRadius: 12,
+          textAlign: 'left',
+        }}
+      >
+        <div
+          style={{
+            fontSize: 12,
+            fontWeight: 600,
+            color: '#6E6E73',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            marginBottom: 8,
+          }}
+        >
+          Details
+        </div>
+        <div style={{ fontSize: 14, color: '#1D1D1F', lineHeight: 1.8 }}>
+          <div>
+            <span style={{ color: '#6E6E73' }}>Born:</span>{' '}
+            {character.birthYear || '---'}
+          </div>
+          <div>
+            <span style={{ color: '#6E6E73' }}>Gender:</span>{' '}
+            {character.gender || '---'}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function GameScreen({
   state,
   onAdvanceYear,
   onMakeChoice,
   onOpenEncyclopedia,
 }) {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [activeTab, setActiveTab] = useState('game');
 
   const {
     character = {},
@@ -43,143 +245,206 @@ export default function GameScreen({
     karma = { merit: 0, demerit: 0, momentum: 0 },
     currentEvent = null,
     lifeEvents = [],
+    lifeStage: stateLifeStage,
   } = state || {};
 
   const age = character.age || 0;
-  const birthYear = character.birthYear || 2000;
-  const year = birthYear + age;
-  const lifeStage = getLifeStage(age);
-  const countryFlag = COUNTRY_FLAGS[character.country] || '';
-  const countryName = character.country
-    ? character.country.charAt(0).toUpperCase() + character.country.slice(1)
-    : '';
+  const lifeStage = stateLifeStage || getLifeStage(age);
+  const avatarEmoji = getAgeEmoji(age);
+
+  const handleTabClick = (tabId) => {
+    setActiveTab(tabId);
+  };
+
+  const handleHeaderClick = () => {
+    setActiveTab('game');
+  };
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'karma':
+        return (
+          <div style={{ padding: '16px 0' }}>
+            <KarmaVisualizer karma={karma} />
+          </div>
+        );
+      case 'health':
+        return (
+          <div style={{ padding: '16px 0' }}>
+            <StatsPanel stats={stats} />
+          </div>
+        );
+      case 'wealth':
+        return <WealthTab stats={stats} lifeEvents={lifeEvents} />;
+      case 'profile':
+        return (
+          <ProfileTab character={character} age={age} lifeStage={lifeStage} />
+        );
+      case 'log':
+        return (
+          <div style={{ padding: '16px 0' }}>
+            <Timeline events={lifeEvents} />
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const renderGameContent = () => {
+    if (currentEvent) {
+      return <EventCard event={currentEvent} onChoice={onMakeChoice} />;
+    }
+    return (
+      <AgeAdvance
+        currentAge={age}
+        lifeStage={lifeStage}
+        onAdvance={onAdvanceYear}
+      />
+    );
+  };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Top Bar */}
-      <header className="sticky top-0 z-30 bg-charcoal-900/95 backdrop-blur-sm border-b border-charcoal-700">
-        <div className="flex items-center justify-between px-4 py-3 max-w-5xl mx-auto">
-          <div className="flex items-center gap-3">
-            <span className="text-lg font-serif font-bold text-temple-gold">
-              {character.name || 'Unknown'}
-            </span>
-            <span className="text-xs text-charcoal-400 hidden sm:inline">
-              {countryFlag} {countryName}
-            </span>
-          </div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        maxWidth: 480,
+        margin: '0 auto',
+        backgroundColor: '#FFFFFF',
+        position: 'relative',
+      }}
+    >
+      {/* Fixed header bar — 56px, saffron-gold */}
+      <header
+        onClick={handleHeaderClick}
+        style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 30,
+          height: 56,
+          backgroundColor: '#E8960C',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 16px',
+          flexShrink: 0,
+          cursor: activeTab !== 'game' ? 'pointer' : 'default',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ fontSize: 24, lineHeight: 1 }}>{avatarEmoji}</span>
+          <span
+            style={{
+              fontSize: 18,
+              fontWeight: 600,
+              color: '#FFFFFF',
+              letterSpacing: '-0.02em',
+            }}
+          >
+            {character.name || 'Unknown'}
+          </span>
+        </div>
 
-          <div className="flex items-center gap-4 text-sm">
-            <span className="text-charcoal-300">
-              <span className="text-saffron-400 font-medium tabular-nums">{age}</span>
-              <span className="text-charcoal-500 mx-1">|</span>
-              <span className="text-charcoal-400">{lifeStage}</span>
-            </span>
-            <span className="text-charcoal-500 text-xs tabular-nums">{year}</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={onOpenEncyclopedia}
-              className="p-2 rounded-lg text-charcoal-400 hover:text-temple-gold
-                hover:bg-charcoal-800 transition-colors duration-150 cursor-pointer"
-              aria-label="Encyclopedia"
-              title="Encyclopedia"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
-                <path d="M4 4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15z" />
-              </svg>
-            </button>
-            <button
-              onClick={() => setShowSidebar(!showSidebar)}
-              className="p-2 rounded-lg text-charcoal-400 hover:text-charcoal-100
-                hover:bg-charcoal-800 transition-colors duration-150 cursor-pointer md:hidden"
-              aria-label="Toggle stats"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 12h18M3 6h18M3 18h18" />
-              </svg>
-            </button>
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span
+            style={{
+              fontSize: 18,
+              fontWeight: 600,
+              color: '#FFFFFF',
+            }}
+          >
+            Age: {age}
+          </span>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenEncyclopedia();
+            }}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: 22,
+              lineHeight: 1,
+              padding: 4,
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            aria-label="Encyclopedia"
+            title="Encyclopedia"
+          >
+            {'\uD83D\uDCD6'}
+          </button>
         </div>
       </header>
 
-      {/* Main content area */}
-      <div className="flex-1 flex max-w-5xl mx-auto w-full">
-        {/* Sidebar - Stats + Karma */}
-        <aside
-          className={`
-            fixed inset-y-0 right-0 z-40 w-72 bg-charcoal-900 border-l border-charcoal-700
-            transform transition-transform duration-250 pt-16 px-4 pb-4 overflow-y-auto
-            md:relative md:inset-auto md:z-auto md:w-64 md:transform-none md:border-l-0
-            md:border-r md:border-charcoal-700 md:pt-4 md:flex-shrink-0
-            ${showSidebar ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
-          `}
-        >
-          {/* Mobile close */}
-          <button
-            onClick={() => setShowSidebar(false)}
-            className="absolute top-4 right-4 p-1 text-charcoal-400 hover:text-charcoal-100
-              md:hidden cursor-pointer"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-              stroke="currentColor" strokeWidth="2">
-              <path d="M5 5l10 10M15 5L5 15" />
-            </svg>
-          </button>
+      {/* Scrollable content area */}
+      <main
+        className="custom-scrollbar"
+        style={{
+          flex: 1,
+          overflowY: 'auto',
+          padding: 16,
+          maxWidth: 600,
+          width: '100%',
+          margin: '0 auto',
+        }}
+      >
+        {activeTab === 'game' ? renderGameContent() : renderTabContent()}
+      </main>
 
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xs font-medium text-charcoal-400 uppercase tracking-wider mb-3">
-                Stats
-              </h3>
-              <StatsPanel stats={stats} />
-            </div>
-
-            <div className="border-t border-charcoal-700 pt-4">
-              <h3 className="text-xs font-medium text-charcoal-400 uppercase tracking-wider mb-3">
-                Karma
-              </h3>
-              <KarmaVisualizer karma={karma} />
-            </div>
-          </div>
-        </aside>
-
-        {/* Mobile sidebar overlay */}
-        {showSidebar && (
-          <div
-            className="fixed inset-0 z-30 bg-charcoal-900/60 md:hidden"
-            onClick={() => setShowSidebar(false)}
-          />
-        )}
-
-        {/* Center content */}
-        <main className="flex-1 flex flex-col px-4 py-6 min-w-0">
-          <div className="flex-1 flex items-center justify-center">
-            {currentEvent ? (
-              <EventCard event={currentEvent} onChoice={onMakeChoice} />
-            ) : (
-              <AgeAdvance
-                currentAge={age}
-                lifeStage={lifeStage}
-                onAdvance={onAdvanceYear}
-              />
-            )}
-          </div>
-
-          {/* Timeline at bottom */}
-          {lifeEvents.length > 0 && (
-            <div className="mt-6 border-t border-charcoal-700 pt-4">
-              <h3 className="text-xs font-medium text-charcoal-400 uppercase tracking-wider mb-3">
-                Life Timeline
-              </h3>
-              <Timeline events={lifeEvents} />
-            </div>
-          )}
-        </main>
-      </div>
+      {/* Fixed bottom tab bar — 83px, white bg */}
+      <nav
+        style={{
+          position: 'sticky',
+          bottom: 0,
+          zIndex: 30,
+          height: 83,
+          backgroundColor: '#FFFFFF',
+          borderTop: '1px solid #E5E5EA',
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'space-around',
+          paddingTop: 8,
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          flexShrink: 0,
+        }}
+      >
+        {TABS.map((tab) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => handleTabClick(tab.id)}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 2,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '4px 12px',
+                minWidth: 56,
+              }}
+            >
+              <span style={{ fontSize: 22, lineHeight: 1 }}>{tab.emoji}</span>
+              <span
+                style={{
+                  fontSize: 10,
+                  fontWeight: 500,
+                  color: isActive ? '#E8960C' : '#8E8E93',
+                  marginTop: 2,
+                }}
+              >
+                {tab.label}
+              </span>
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 }

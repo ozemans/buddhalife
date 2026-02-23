@@ -1,16 +1,16 @@
 const variants = {
   primary:
-    'bg-saffron-500 hover:bg-saffron-600 active:bg-saffron-700 text-white shadow-md hover:shadow-lg',
+    'bg-header-bg text-white active:brightness-90',
   secondary:
-    'border-2 border-saffron-500 text-saffron-400 hover:bg-saffron-500/10 active:bg-saffron-500/20',
+    'bg-button-bg text-text-primary border border-button-border active:bg-[#E5E5EA]',
   danger:
-    'bg-red-600 hover:bg-red-700 active:bg-red-800 text-white shadow-md hover:shadow-lg',
+    'bg-accent-negative text-white active:brightness-90',
 };
 
 const sizes = {
-  sm: 'px-3 py-1.5 text-sm rounded-md',
-  md: 'px-5 py-2.5 text-base rounded-lg',
-  lg: 'px-7 py-3.5 text-lg rounded-xl',
+  sm: 'min-h-[40px] px-4 py-2 text-sm',
+  md: 'min-h-[48px] px-5 py-3 text-base',
+  lg: 'min-h-[56px] px-6 py-3.5 text-lg',
 };
 
 export default function Button({
@@ -26,10 +26,12 @@ export default function Button({
       onClick={onClick}
       disabled={disabled}
       className={`
-        inline-flex items-center justify-center font-medium
-        transition-all duration-200 ease-out
-        focus:outline-none focus:ring-2 focus:ring-saffron-400/50 focus:ring-offset-2 focus:ring-offset-charcoal-900
-        disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none
+        w-full flex items-center justify-center
+        font-medium rounded-xl
+        transition-transform duration-150 ease-out
+        active:scale-[0.97]
+        focus:outline-none focus:ring-2 focus:ring-header-bg/40 focus:ring-offset-2 focus:ring-offset-white
+        disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100
         cursor-pointer select-none
         ${variants[variant] || variants.primary}
         ${sizes[size] || sizes.md}

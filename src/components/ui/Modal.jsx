@@ -26,29 +26,23 @@ export default function Modal({ isOpen, onClose, title, children }) {
     <div
       ref={overlayRef}
       onClick={handleOverlayClick}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4
-        bg-charcoal-900/80 backdrop-blur-sm
-        animate-[fadeIn_200ms_ease-out]"
-      style={{
-        animation: 'fadeIn 200ms ease-out',
-      }}
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center
+        bg-black/20"
+      style={{ animation: 'fadeIn 200ms ease-out' }}
     >
       <div
         className="relative w-full max-w-md max-h-[85vh] overflow-y-auto
-          bg-charcoal-800 border border-charcoal-600 rounded-2xl shadow-2xl
-          animate-[slideUp_250ms_ease-out]"
-        style={{
-          animation: 'slideUp 250ms ease-out',
-        }}
+          bg-white rounded-t-2xl sm:rounded-2xl shadow-lg"
+        style={{ animation: 'slideUp 200ms ease-out' }}
       >
-        <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-charcoal-700">
-          <h2 className="text-xl font-serif font-semibold text-temple-gold">
+        <div className="flex items-center justify-between px-5 pt-5 pb-3 border-b border-bg-secondary">
+          <h2 className="text-lg font-semibold text-text-primary">
             {title}
           </h2>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-charcoal-400 hover:text-charcoal-100
-              hover:bg-charcoal-700 transition-colors duration-150 cursor-pointer"
+            className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary
+              hover:bg-bg-secondary transition-colors duration-150 cursor-pointer"
             aria-label="Close"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
@@ -56,7 +50,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
             </svg>
           </button>
         </div>
-        <div className="px-6 py-5">
+        <div className="px-5 py-4">
           {children}
         </div>
       </div>

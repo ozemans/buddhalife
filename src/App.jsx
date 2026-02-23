@@ -88,7 +88,7 @@ export default function App() {
         country: character.country,
         background: character.background,
         birthYear: 2000 + Math.floor(Math.random() * 10),
-        gender: 'any',
+        gender: character.gender || 'any',
       },
     });
   }, [dispatch]);

@@ -1,31 +1,26 @@
 import { useState, useMemo } from 'react';
-import Button from '../ui/Button';
 
-const COUNTRY_LABELS = {
-  all: 'All',
-  thailand: '\uD83C\uDDF9\uD83C\uDDED Thailand',
-  myanmar: '\uD83C\uDDF2\uD83C\uDDF2 Myanmar',
-  cambodia: '\uD83C\uDDF0\uD83C\uDDED Cambodia',
-  vietnam: '\uD83C\uDDFB\uD83C\uDDF3 Vietnam',
-  laos: '\uD83C\uDDF1\uD83C\uDDE6 Laos',
-  general: 'General',
-};
+const COUNTRY_FILTERS = [
+  { id: 'all', label: 'All' },
+  { id: 'thailand', label: '🇹🇭 Thailand' },
+  { id: 'myanmar', label: '🇲🇲 Myanmar' },
+  { id: 'cambodia', label: '🇰🇭 Cambodia' },
+  { id: 'vietnam', label: '🇻🇳 Vietnam' },
+  { id: 'laos', label: '🇱🇦 Laos' },
+];
 
 export default function EncyclopediaScreen({ glossary = [], onBack }) {
   const [search, setSearch] = useState('');
   const [countryFilter, setCountryFilter] = useState('all');
-  const [expandedTerm, setExpandedTerm] = useState(null);
-
-  const availableCountries = useMemo(() => {
-    const countries = new Set(glossary.map((g) => g.country || 'general'));
-    return ['all', ...countries];
-  }, [glossary]);
 
   const filtered = useMemo(() => {
     const query = search.toLowerCase().trim();
     return glossary.filter((entry) => {
+      // Country filter: check if the entry's countries array includes the filter
       const matchesCountry =
-        countryFilter === 'all' || (entry.country || 'general') === countryFilter;
+        countryFilter === 'all' ||
+        (Array.isArray(entry.countries) && entry.countries.includes(countryFilter)) ||
+        (entry.country === countryFilter);
       if (!matchesCountry) return false;
       if (!query) return true;
       return (
@@ -38,120 +33,217 @@ export default function EncyclopediaScreen({ glossary = [], onBack }) {
   }, [glossary, search, countryFilter]);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 z-30 bg-charcoal-900/95 backdrop-blur-sm border-b border-charcoal-700">
-        <div className="flex items-center gap-3 px-4 py-3 max-w-2xl mx-auto">
-          <button
-            onClick={onBack}
-            className="p-2 rounded-lg text-charcoal-400 hover:text-charcoal-100
-              hover:bg-charcoal-800 transition-colors duration-150 cursor-pointer flex-shrink-0"
-            aria-label="Back"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
+    <div style={styles.container}>
+      <div style={styles.inner}>
+        {/* Header */}
+        <header style={styles.header}>
+          <button onClick={onBack} style={styles.backButton} aria-label="Back">
+            <span style={{ fontSize: 20, lineHeight: 1 }}>←</span>
           </button>
-          <h1 className="text-lg font-serif font-semibold text-temple-gold">
-            Encyclopedia
-          </h1>
-        </div>
-      </header>
+          <h1 style={styles.headerTitle}>Encyclopedia</h1>
+          <div style={{ width: 40 }} />
+        </header>
 
-      <div className="flex-1 px-4 py-4 max-w-2xl mx-auto w-full">
-        {/* Search */}
-        <div className="mb-4">
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search terms, Pali words..."
-            className="w-full px-4 py-3 rounded-xl
-              bg-charcoal-800 border border-charcoal-600
-              text-charcoal-100 placeholder:text-charcoal-500 text-sm
-              focus:outline-none focus:border-saffron-500/50 focus:ring-1 focus:ring-saffron-500/30
-              transition-colors duration-200"
-          />
+        {/* Search bar */}
+        <div style={{ width: '100%', marginBottom: 16 }}>
+          <div style={{ position: 'relative' }}>
+            <span style={{
+              position: 'absolute',
+              left: 14,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              fontSize: 16,
+              color: '#6E6E73',
+              pointerEvents: 'none',
+            }}>
+              🔍
+            </span>
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search terms, Pali words..."
+              style={styles.searchInput}
+            />
+          </div>
         </div>
 
-        {/* Country filter */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {availableCountries.map((country) => (
-            <button
-              key={country}
-              onClick={() => setCountryFilter(country)}
-              className={`px-3 py-1.5 rounded-full text-xs border
-                transition-all duration-200 cursor-pointer
-                ${countryFilter === country
-                  ? 'bg-saffron-500/15 border-saffron-500/50 text-saffron-400'
-                  : 'bg-charcoal-800 border-charcoal-600 text-charcoal-400 hover:border-charcoal-500'
-                }`}
-            >
-              {COUNTRY_LABELS[country] || country}
-            </button>
-          ))}
+        {/* Country filter pills */}
+        <div style={styles.filterRow}>
+          {COUNTRY_FILTERS.map((filter) => {
+            const isActive = countryFilter === filter.id;
+            return (
+              <button
+                key={filter.id}
+                onClick={() => setCountryFilter(filter.id)}
+                style={{
+                  ...styles.filterPill,
+                  backgroundColor: isActive ? 'rgba(232, 150, 12, 0.1)' : '#F2F2F7',
+                  borderColor: isActive ? '#E8960C' : '#D1D1D6',
+                  color: isActive ? '#E8960C' : '#6E6E73',
+                  fontWeight: isActive ? 600 : 400,
+                }}
+              >
+                {filter.label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Results count */}
-        <p className="text-xs text-charcoal-500 mb-4">
+        <p style={{ fontSize: 13, color: '#6E6E73', marginBottom: 12, alignSelf: 'flex-start' }}>
           {filtered.length} {filtered.length === 1 ? 'term' : 'terms'} found
         </p>
 
         {/* Glossary list */}
         {filtered.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-charcoal-400 text-sm">No terms match your search.</p>
+          <div style={{ textAlign: 'center', paddingTop: 48, paddingBottom: 48 }}>
+            <span style={{ fontSize: 32, display: 'block', marginBottom: 12 }}>📖</span>
+            <p style={{ fontSize: 15, color: '#6E6E73' }}>No terms match your search.</p>
           </div>
         ) : (
-          <div className="space-y-2">
-            {filtered.map((entry, index) => {
-              const isExpanded = expandedTerm === index;
-              return (
-                <button
-                  key={index}
-                  onClick={() => setExpandedTerm(isExpanded ? null : index)}
-                  className="w-full text-left px-4 py-3 rounded-xl
-                    bg-charcoal-800 border border-charcoal-700
-                    hover:border-charcoal-600
-                    transition-all duration-200 cursor-pointer"
-                >
-                  <div className="flex items-baseline justify-between gap-2">
-                    <span className="text-sm font-medium text-charcoal-100">
-                      {entry.term}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%', paddingBottom: 32 }}>
+            {filtered.map((entry, index) => (
+              <div key={index} style={styles.termCard}>
+                {/* Term name and Pali */}
+                <div style={{ marginBottom: 4 }}>
+                  <span style={{ fontSize: 16, fontWeight: 700, color: '#1D1D1F' }}>
+                    {entry.term}
+                  </span>
+                  {entry.pali && entry.pali !== entry.term && (
+                    <span style={{ fontSize: 14, color: '#6E6E73', marginLeft: 8 }}>
+                      ({entry.pali})
                     </span>
-                    {entry.pali && (
-                      <span className="text-xs text-saffron-400/70 italic flex-shrink-0">
-                        {entry.pali}
+                  )}
+                </div>
+
+                {/* Translation */}
+                {entry.translation && (
+                  <p style={{ fontSize: 14, color: '#E8960C', margin: 0, marginBottom: 6, fontWeight: 500, lineHeight: 1.4 }}>
+                    {entry.translation}
+                  </p>
+                )}
+
+                {/* Description */}
+                {entry.description && (
+                  <p style={{ fontSize: 14, color: '#1D1D1F', margin: 0, lineHeight: 1.6, opacity: 0.8 }}>
+                    {entry.description}
+                  </p>
+                )}
+
+                {/* Country tags */}
+                {Array.isArray(entry.countries) && entry.countries.length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
+                    {entry.countries.map((c) => (
+                      <span key={c} style={styles.countryTag}>
+                        {c.charAt(0).toUpperCase() + c.slice(1)}
                       </span>
-                    )}
+                    ))}
                   </div>
-
-                  {entry.translation && (
-                    <p className="text-xs text-charcoal-400 mt-1">
-                      &ldquo;{entry.translation}&rdquo;
-                    </p>
-                  )}
-
-                  {isExpanded && entry.description && (
-                    <p className="text-xs text-charcoal-300 leading-relaxed mt-3 pt-3
-                      border-t border-charcoal-700">
-                      {entry.description}
-                    </p>
-                  )}
-
-                  {isExpanded && entry.country && entry.country !== 'general' && (
-                    <span className="inline-block mt-2 px-2 py-0.5 text-xs rounded-full
-                      bg-charcoal-700 text-charcoal-400">
-                      {COUNTRY_LABELS[entry.country] || entry.country}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
+                )}
+              </div>
+            ))}
           </div>
         )}
       </div>
     </div>
   );
 }
+
+const styles = {
+  container: {
+    minHeight: '100vh',
+    backgroundColor: '#FFFFFF',
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '0 16px',
+  },
+  inner: {
+    width: '100%',
+    maxWidth: 480,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: 56,
+    backgroundColor: '#E8960C',
+    borderRadius: '0 0 16px 16px',
+    padding: '0 12px',
+    marginBottom: 20,
+    position: 'sticky',
+    top: 0,
+    zIndex: 30,
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    border: 'none',
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    color: '#FFFFFF',
+    cursor: 'pointer',
+    transition: 'background-color 0.15s ease',
+    fontSize: 16,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: 600,
+    color: '#FFFFFF',
+    margin: 0,
+    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  },
+  searchInput: {
+    width: '100%',
+    padding: '12px 16px 12px 42px',
+    borderRadius: 12,
+    border: '1px solid #D1D1D6',
+    backgroundColor: '#F2F2F7',
+    fontSize: 15,
+    color: '#1D1D1F',
+    outline: 'none',
+    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    boxSizing: 'border-box',
+  },
+  filterRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 8,
+    width: '100%',
+    marginBottom: 16,
+  },
+  filterPill: {
+    padding: '6px 14px',
+    borderRadius: 20,
+    border: '1.5px solid #D1D1D6',
+    fontSize: 13,
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    whiteSpace: 'nowrap',
+  },
+  termCard: {
+    width: '100%',
+    padding: '16px',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    border: '1px solid #E5E5EA',
+    boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+  },
+  countryTag: {
+    display: 'inline-block',
+    padding: '2px 10px',
+    borderRadius: 10,
+    backgroundColor: '#F2F2F7',
+    fontSize: 12,
+    color: '#6E6E73',
+    fontWeight: 500,
+  },
+};

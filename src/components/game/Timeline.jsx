@@ -1,8 +1,15 @@
 export default function Timeline({ events = [] }) {
   if (events.length === 0) {
     return (
-      <div className="text-center py-8 text-charcoal-400 text-sm italic">
-        Your life story has yet to unfold...
+      <div style={{
+        textAlign: 'center',
+        padding: '48px 16px',
+        color: '#6E6E73',
+        fontSize: 16,
+        fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+        backgroundColor: '#FFFFFF',
+      }}>
+        Your story begins...
       </div>
     );
   }
@@ -10,42 +17,68 @@ export default function Timeline({ events = [] }) {
   const sortedEvents = [...events].sort((a, b) => b.age - a.age);
 
   return (
-    <div className="w-full max-h-64 md:max-h-96 overflow-y-auto pr-1 custom-scrollbar">
-      <div className="relative pl-6">
-        {/* Vertical line */}
-        <div className="absolute left-2 top-1 bottom-1 w-px bg-charcoal-600" />
+    <div
+      className="custom-scrollbar"
+      style={{
+        width: '100%',
+        maxHeight: 480,
+        overflowY: 'auto',
+        backgroundColor: '#FFFFFF',
+        fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      }}
+    >
+      {sortedEvents.map((event, index) => {
+        const summary = event.choiceText && event.choiceText.length < (event.title?.length || Infinity)
+          ? event.choiceText
+          : event.title || event.choiceText || 'An event occurred';
 
-        <div className="space-y-4">
-          {sortedEvents.map((event, index) => (
-            <div key={index} className="relative">
-              {/* Dot */}
-              <div
-                className={`absolute -left-4 top-1 w-3 h-3 rounded-full border-2
-                  ${index === 0
-                    ? 'bg-saffron-500 border-saffron-400 shadow-sm shadow-saffron-500/30'
-                    : 'bg-charcoal-700 border-charcoal-500'
-                  }`}
-              />
-
-              <div className="pb-1">
-                <div className="flex items-baseline gap-2 mb-0.5">
-                  <span className="text-xs font-medium text-saffron-400 tabular-nums">
-                    Age {event.age}
-                  </span>
-                  <span className="text-sm font-medium text-charcoal-100">
-                    {event.title}
-                  </span>
-                </div>
-                {event.description && (
-                  <p className="text-xs text-charcoal-400 leading-relaxed">
-                    {event.description}
-                  </p>
-                )}
-              </div>
+        return (
+          <div key={event.eventId || index}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              padding: '12px 16px',
+            }}>
+              {/* Age badge */}
+              <span style={{
+                flexShrink: 0,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minWidth: 48,
+                height: 28,
+                backgroundColor: '#F2F2F7',
+                borderRadius: 9999,
+                fontSize: 12,
+                fontWeight: 600,
+                color: '#6E6E73',
+                padding: '0 10px',
+                fontVariantNumeric: 'tabular-nums',
+              }}>
+                Age {event.age}
+              </span>
+              {/* Summary text */}
+              <span style={{
+                fontSize: 15,
+                color: '#1D1D1F',
+                lineHeight: 1.4,
+              }}>
+                {summary}
+              </span>
             </div>
-          ))}
-        </div>
-      </div>
+            {/* Divider — skip after last item */}
+            {index < sortedEvents.length - 1 && (
+              <div style={{
+                height: 1,
+                backgroundColor: '#E5E5EA',
+                marginLeft: 16,
+                marginRight: 16,
+              }} />
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

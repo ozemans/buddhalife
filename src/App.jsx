@@ -192,6 +192,26 @@ export default function App() {
               },
               outcomeText: 'In your grief, you contemplate the Buddha\'s teaching on anicca — all things are impermanent.',
             },
+            {
+              id: 'c',
+              text: 'Make a scene at the funeral and air your grievances',
+              effects: {
+                karma: { merit: 0, demerit: 8 },
+                stats: { happiness: -8, spiritualDev: -5, socialStanding: -10 },
+                relationships: [{ target: 'family', change: -15 }, { target: 'community', change: -10 }],
+              },
+              outcomeText: 'You erupt in front of everyone — old arguments, unresolved anger, all of it spilling out over the coffin. The monks stop chanting. Your mother covers her face. The village will talk about this for years.',
+            },
+            {
+              id: 'd',
+              text: 'Pocket some of the funeral donation money',
+              effects: {
+                karma: { merit: 0, demerit: 6 },
+                stats: { happiness: -4, spiritualDev: -3, socialStanding: -8, wealth: 5 },
+                relationships: [{ target: 'family', change: -10 }, { target: 'monks', change: -5 }],
+              },
+              outcomeText: 'While the family is distracted with grief, you slip some of the donation envelopes into your pocket. The money feels heavy. That night, you dream of the deceased watching you with sad, knowing eyes.',
+            },
           ],
         },
       });

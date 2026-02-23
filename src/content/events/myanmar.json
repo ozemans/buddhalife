@@ -38,6 +38,16 @@
           "relationships": [{ "target": "parents", "change": 3 }]
         },
         "outcomeText": "You are exhausted, rising before dawn for monastery lessons and studying English by lamplight at night. But you become fluent in both worlds -- the Pali-rich spiritual vocabulary and the English-language modernity pressing in from outside. The double education is grueling but gives you something rare: the ability to move between Buddhist Myanmar and the globalizing world."
+      },
+      {
+        "id": "d",
+        "text": "Attend the monastery school but steal supplies and food to sell at the market",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 7 },
+          "stats": { "happiness": -4, "spiritualDev": -5, "socialStanding": -8, "wealth": 3 },
+          "relationships": [{ "target": "monks", "change": -12 }, { "target": "parents", "change": -8 }]
+        },
+        "outcomeText": "The monastery feeds you, teaches you, gives you a place to sleep -- and you repay it by stuffing chalk, candles, and rice into your bag to sell at the market stall down the road. The coins feel good in your hand until the head monk summons you. He does not shout; he simply asks you to return what you took and sit with him in silence. The silence is worse than any punishment. Your parents are called. Your mother covers her face. In Myanmar, a monastery is not just a school -- it is the heart of the community's spiritual life, and you have stolen from its body. The other children whisper about you for months."
       }
     ],
     "tags": ["education", "monastery", "childhood", "language", "pali"],
@@ -82,6 +92,16 @@
           "relationships": [{ "target": "grandmother", "change": 3 }]
         },
         "outcomeText": "You go through the motions at the shrine while silently reciting metta prayers. Your grandmother seems satisfied. You have found a child's compromise -- honoring the form while directing your heart elsewhere. Whether the nats notice the difference is another question entirely."
+      },
+      {
+        "id": "d",
+        "text": "Grab the coconut and bananas from the shrine and eat them yourself",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 7 },
+          "stats": { "happiness": -6, "spiritualDev": -5, "socialStanding": -7 },
+          "relationships": [{ "target": "grandmother", "change": -12 }, { "target": "community", "change": -8 }]
+        },
+        "outcomeText": "You are hungry, and the fruit looks better than anything at home. While your grandmother bows her head in prayer, you snatch the bananas from the offering tray and stuff one into your mouth. Your grandmother's scream freezes your blood. She grabs your arm so hard it hurts, her eyes wild with fear -- not anger, but genuine terror. You have eaten food meant for the nats. The spirits are not abstract to her; they are real, powerful, and vengeful. That night you wake drenched in sweat from nightmares. Your grandmother spends the next three days at the shrine making amends, burning incense and begging the nats to forgive a foolish child. The village aunties shake their heads: what kind of child steals from spirits?"
       }
     ],
     "tags": ["nats", "spirits", "syncretism", "grandmother", "childhood"],
@@ -126,6 +146,16 @@
           "relationships": [{ "target": "parents", "change": -8 }]
         },
         "outcomeText": "Your father is furious. Your mother says nothing, which is worse. In Myanmar, a son who delays ordination delays his mother's greatest source of merit. The neighborhood notices. At ceremonies, your mother sits silently while other women boast about their ordained sons. The school benefit is real, but the social cost is steep. People say: 'He values books over his mother's next life.'"
+      },
+      {
+        "id": "d",
+        "text": "Cause a scene at the ceremony -- mock the rituals and refuse to have your head shaved",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 9 },
+          "stats": { "happiness": -8, "spiritualDev": -7, "socialStanding": -10 },
+          "relationships": [{ "target": "parents", "change": -15 }, { "target": "monks", "change": -10 }, { "target": "community", "change": -10 }]
+        },
+        "outcomeText": "When the razor approaches your head, you jerk away and shout that you do not believe in any of this. You call the chanting boring and the robes ugly. The hall goes silent. Your mother's face crumbles -- this was to be the proudest moment of her life, the moment her son generates the greatest merit she will ever receive. Your father cannot meet anyone's eyes. The monks set down the razor without a word. Guests who traveled hours to witness your ordination file out in stunned silence. In Myanmar, disrupting a shinbyu is not teenage rebellion -- it is a devastation. Your mother's merit, your family's honor, your community's investment of time and resources -- all destroyed in a single tantrum. For years afterward, your mother flinches when other women discuss their sons' ordinations."
       }
     ],
     "tags": ["shinbyu", "ordination", "novice", "merit", "mother", "coming-of-age"],
@@ -214,6 +244,16 @@
           "relationships": []
         },
         "outcomeText": "You read the pamphlet carefully. It describes suffering (dukkha -- a Buddhist word) and says that merit (kutho -- another Buddhist word) is never enough. Instead, it offers 'grace' from a God who saves you freely. The theology fascinates you, though you notice how it borrows Buddhist language to sell a non-Buddhist message. The encounter strengthens your Buddhist identity by forcing you to articulate what you actually believe. The storm passes as you read."
+      },
+      {
+        "id": "d",
+        "text": "Shove the stranger and throw all their pamphlets into the river",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 7 },
+          "stats": { "happiness": -5, "spiritualDev": -5, "socialStanding": -6 },
+          "relationships": [{ "target": "community", "change": -5 }]
+        },
+        "outcomeText": "Rage and superstitious fear merge into something ugly. You grab the stranger by the collar, scatter their pamphlets across the deck, and hurl the stack overboard into the churning river. The stranger stumbles back, shocked. Other passengers stare -- some nod in approval, but an old woman mutters that violence on water angers the nats of the river. The storm intensifies as if in response. When the boat finally docks, you walk off with shaking hands. The metta prayer you recited this morning -- 'may all beings be free from harm' -- echoes in your mind like an accusation. The stranger was foolish, perhaps, but you responded to words with violence. The demerit of that sits heavier than any pamphlet."
       }
     ],
     "tags": ["interfaith", "Christianity", "Irrawaddy", "omen", "storm", "pamphlet"],
@@ -356,6 +396,16 @@
           "relationships": [{ "target": "community", "change": 2 }]
         },
         "outcomeText": "You attend the celebration and enjoy the merit-making but avoid the VIP area where the strongman holds court. You eat the food but do not accept personal gifts. It is a tightrope walk -- benefiting from his generosity without endorsing its source. The compromise satisfies no one fully but offends no one either. In the moral landscape of Karen State, where sovereignty is fragmented among armed groups, such compromises are how people survive."
+      },
+      {
+        "id": "d",
+        "text": "Volunteer to manage the donation funds and skim a portion for yourself",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 10 },
+          "stats": { "happiness": -7, "spiritualDev": -8, "socialStanding": -10, "wealth": 5 },
+          "relationships": [{ "target": "community", "change": -12 }, { "target": "monks", "change": -10 }]
+        },
+        "outcomeText": "You offer to handle the logistics -- purchasing supplies, paying musicians, coordinating the feast -- and quietly divert a cut into your own pocket. The money is already dirty, you reason, so skimming from dirty money is a victimless crime. But when the meditation hall comes in smaller than promised, the senior monk asks to see the accounts. The numbers do not add up. The strongman, who did not become powerful by being careless, sends men to ask questions. You have managed to commit the rare feat of stealing from both the Sangha and a warlord simultaneously. The monks lose faith in you; the strongman marks you as untrustworthy. The community -- which needed that meditation hall -- sees you as someone who stole merit from an entire village. The money in your pocket buys nothing that replaces what you have lost."
       }
     ],
     "tags": ["strongman", "dana", "dirty-money", "merit-power-nexus", "pagoda", "karen"],
@@ -400,6 +450,16 @@
           "relationships": [{ "target": "community", "change": 2 }]
         },
         "outcomeText": "You sit in the crowd, make your small dana offering, and receive the monk's blessing. Around you, people scribble numbers on their palms and argue about the encoded sequences. You resist the temptation. The debt will be paid through honest work, not through gambling dressed in religious clothing. But you wonder: in a country where merit is power and poverty is karma's judgment, can the desperate really be blamed for hoping?"
+      },
+      {
+        "id": "d",
+        "text": "Pickpocket other devotees while they are absorbed in decoding the sermon",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 8 },
+          "stats": { "happiness": -6, "spiritualDev": -7, "socialStanding": -10, "wealth": 4 },
+          "relationships": [{ "target": "community", "change": -10 }, { "target": "monks", "change": -5 }]
+        },
+        "outcomeText": "The crowd is thousands strong and utterly absorbed -- heads down, scribbling numbers, muttering calculations. Easy pickings. You brush past distracted devotees, fingers finding wallets and loose kyat notes in longyi folds. You collect more in an hour than you earn in a week. Then a grandmother catches your wrist mid-reach, her grip surprisingly strong. She shouts 'thief' and the crowd turns. At a pagoda. During a sermon. Surrounded by people who came seeking the Buddha's wisdom. You are dragged before the monks, who regard you with an expression that is somehow worse than condemnation -- it is pity. Stealing from people at prayer, in a sacred space, during a teaching on karma. The irony is so perfect it could be a parable. You have generated demerit that will echo across lifetimes."
       }
     ],
     "tags": ["lottery", "sermon", "gambling", "charismatic-monk", "debt", "karma"],

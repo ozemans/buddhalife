@@ -60,6 +60,16 @@ export function createFestivalEvent(festival, age) {
         outcomeText:
           'You stay home while the community celebrates. Some neighbors notice your absence.',
       },
+      {
+        id: 'd',
+        text: 'Steal from the offerings while everyone is distracted',
+        effects: {
+          karma: { merit: 0, demerit: 7 },
+          stats: { happiness: -5, spiritualDev: -5, socialStanding: -8, wealth: 3 },
+          relationships: [{ target: 'community', change: -10 }, { target: 'monks', change: -8 }],
+        },
+        outcomeText: `During the height of ${festival.name}, you slip coins and offerings into your pocket while the crowd is absorbed in prayer. A child notices but says nothing — only stares. The stolen merit-money burns in your hands. The monks seem to look through you for weeks afterward.`,
+      },
     ],
   };
 }

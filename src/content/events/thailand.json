@@ -82,6 +82,16 @@
           "relationships": [{ "target": "parents", "change": 2 }]
         },
         "outcomeText": "You shuttle between temple and home, never fully committing to either world. The monks note your absences with quiet disapproval. Your parents worry you are becoming ungrateful. But you do learn to read, and you maintain your family bonds. It is an imperfect middle path."
+      },
+      {
+        "id": "d",
+        "text": "Steal food and coins from the monks' offering trays while doing your chores",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 8 },
+          "stats": { "happiness": -5, "spiritualDev": -6, "socialStanding": -8, "wealth": 3 },
+          "relationships": [{ "target": "monks", "change": -12 }, { "target": "family", "change": -8 }]
+        },
+        "outcomeText": "You pocket coins from the alms trays and hide sticky rice in your shirt when no one is looking. For a few days you feel clever -- richer than any dek wat has a right to be. Then the senior monk counts the offerings and his face darkens. The other temple boys are questioned. When the truth emerges, the abbot calls your parents to the temple. Your mother kneels before him, weeping with shame. Stealing from monks is among the gravest acts a child can commit -- you have taken from the Sangha itself, and the demerit falls not only on you but on the family that raised you."
       }
     ],
     "tags": ["temple", "education", "poverty", "dek-wat", "monastery"],
@@ -170,6 +180,16 @@
           "relationships": [{ "target": "elders", "change": -8 }]
         },
         "outcomeText": "You and your friends spend the afternoon swimming in the river. It feels wonderful -- until you come home and your grandmother fixes you with a look that could curdle milk. The kaentau is not optional. It is how young people demonstrate respect for the spiritual hierarchy. Several temple sleepers noted your absence. Your reputation among the elders suffers, and their blessings will not extend to you this season."
+      },
+      {
+        "id": "d",
+        "text": "Visit the elders but pocket the gift money your parents gave you for them",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 7 },
+          "stats": { "happiness": -3, "spiritualDev": -5, "socialStanding": -7, "wealth": 4 },
+          "relationships": [{ "target": "elders", "change": -10 }, { "target": "parents", "change": -8 }]
+        },
+        "outcomeText": "You make the rounds with empty hands and a pocket full of your parents' money, pressing your palms together in hollow wai after hollow wai. The temple sleepers notice the missing gifts immediately -- they know exactly which families sent what. Old Grandmother Kaew looks at you with an expression worse than anger: disappointment. Word travels back to your parents before you even reach home. You have stolen from the most spiritually powerful people in the village, people whose blessings protect your family and whose curses no one dares invite. The coins feel like burning coals in your pocket."
       }
     ],
     "tags": ["kaentau", "temple-sleepers", "respect", "elders", "blessings"],
@@ -214,6 +234,16 @@
           "relationships": []
         },
         "outcomeText": "You walk past the amulet stalls and sit in the ordination hall, joining the temple sleepers in their evening meditation. The abbot notices you and nods. 'Anicca, dukkha, anatta,' you recite with mak nap beads. This is the forest monk's way -- relying on inner cultivation rather than external objects. Your spiritualdev deepens, though your friends think you are strange."
+      },
+      {
+        "id": "d",
+        "text": "Wait for the vendor to turn away and steal the rare blessed amulet",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 9 },
+          "stats": { "happiness": -8, "spiritualDev": -7, "socialStanding": -10, "wealth": 5 },
+          "relationships": [{ "target": "community", "change": -10 }, { "target": "monks", "change": -8 }]
+        },
+        "outcomeText": "You wait until the crowd surges and the vendor looks away, then your hand darts out and closes around the forest monk's amulet. You slip it into your pocket and walk quickly into the crowd. For one electric moment you feel invincible. Then the vendor shouts. Faces turn. A temple fair is a small world, and someone saw your hand. The vendor grabs your arm; the crowd parts. A monk who blessed these amulets stands watching, his expression unreadable. Stealing a sacred object consecrated by the Sangha is not ordinary theft -- it is a violation of the sacred. The vendor demands your parents come. The amulet, which was meant to protect, now radiates only shame."
       }
     ],
     "tags": ["amulets", "temple-fair", "commerce", "superstition", "meditation"],
@@ -464,6 +494,16 @@
           "relationships": [{ "target": "child", "change": 5 }]
         },
         "outcomeText": "The saraa considers this and tries the egg with a verbal promise that the child will be ordained as a novice. The egg balances perfectly on the first attempt. The crowd gasps. The khwan has spoken through the ritual: this child is meant for the monastery. You have committed to a major life change for your family, but your child begins recovering immediately."
+      },
+      {
+        "id": "d",
+        "text": "Explode at the saraa, accusing her of being a fraud who is milking your family for money",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 8 },
+          "stats": { "happiness": -7, "spiritualDev": -6, "socialStanding": -10 },
+          "relationships": [{ "target": "community", "change": -12 }, { "target": "elders", "change": -10 }]
+        },
+        "outcomeText": "Fear and frustration boil over. You shove the crossbow aside and scream that the saraa is a charlatan, that the egg trick is nonsense, that your child needs a hospital not a circus. The room goes silent. The saraa -- who has healed children in this village for thirty years, who was chosen by the tsao moeng itself -- stares at you. The audience's eyes are wide with horror. You have insulted a spiritual authority mid-ceremony, disrupting the fragile connection between this world and the spirit world. Your child's fever spikes that night. The saraa refuses to return. Neighbors cross the street to avoid you. In the Shan world, attacking a healer during a soul-calling is an act of spiritual violence that the community will not soon forget."
       }
     ],
     "tags": ["healing", "khwan", "soul-calling", "haung-khwan", "sacrifice", "saraa"],
@@ -704,6 +744,16 @@
           "relationships": [{ "target": "family", "change": 5 }, { "target": "friends", "change": 3 }]
         },
         "outcomeText": "You rise early for the rod nam dam hua ceremony, then change into clothes you do not mind ruining and join the street celebrations. It is the Thai way -- sacred and profane, ceremony and chaos, all braided together. Your grandmother is satisfied; your friends are happy. You end the day exhausted but renewed."
+      },
+      {
+        "id": "d",
+        "text": "Use the Songkran chaos as cover to pocket donations from the unattended temple collection box",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 9 },
+          "stats": { "happiness": -6, "spiritualDev": -8, "socialStanding": -10, "wealth": 5 },
+          "relationships": [{ "target": "family", "change": -10 }, { "target": "monks", "change": -12 }]
+        },
+        "outcomeText": "While the temple is nearly empty -- everyone either at the ceremony or in the streets -- you slip into the ordination hall and scoop bills from the donation box. Songkran money, offered by families for New Year merit. Your hands tremble. You stuff the cash into your wet clothes and walk out into the water fight, letting the chaos swallow you. But a temple boy saw you from behind a pillar. By evening, the monks know. By the next morning, your grandmother knows. She sits on her mat and will not look at you. Stealing from a temple on the holiest day of the year -- the day meant for washing away sins, not committing new ones. The New Year begins under a weight of demerit so heavy you can feel it pressing on your chest."
       }
     ],
     "tags": ["songkran", "new-year", "water-festival", "family", "tradition-vs-modernity"],
@@ -792,6 +842,16 @@
           "relationships": [{ "target": "community", "change": 5 }]
         },
         "outcomeText": "You channel your grief into action. You arrange for monks to chant at the temple, organize the yaat nam water-pouring ceremony, and begin gathering supplies for the funeral. Productive activity steadies your emotions. The merit generated flows to Grandfather Wang, strengthening his passage. The community sees your competence and maturity. This is what adults do in the face of death: they act."
+      },
+      {
+        "id": "d",
+        "text": "Demand that Grandfather Wang reveal where he hid his savings before he dies",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 10 },
+          "stats": { "happiness": -10, "spiritualDev": -8, "socialStanding": -10, "wealth": 4 },
+          "relationships": [{ "target": "family", "change": -15 }, { "target": "community", "change": -12 }]
+        },
+        "outcomeText": "As the old man lies dying, surrounded by monks chanting for his peaceful passage, you lean in and whisper urgently about the gold he was rumored to have buried beneath his house. Your relatives recoil. A cousin pulls you away. The monks falter in their chanting. What you have done is monstrous by any standard, but in the Shan world it is almost incomprehensible -- you have injected greed and attachment into the most sacred moment of a person's life, the moment when the phi must be released cleanly. Grandfather Wang's eyes flutter open in confusion. The peaceful death his lifetime of merit earned him has been disturbed. Your family will speak of this for generations, and not kindly."
       }
     ],
     "tags": ["death", "good-death", "grief", "emotional-control", "merit-transfer", "elderhood"],

@@ -38,6 +38,16 @@
           "relationships": [{ "target": "mother", "change": 5 }]
         },
         "outcomeText": "Your mother sighs. 'The tourists bring money to Luang Prabang,' she says. 'But they do not understand what they are photographing. This is not a performance -- it is the oldest relationship in Buddhism: the giver and the receiver, the layperson and the monk.' She pauses. 'We cannot stop them. We can only make sure we do it properly ourselves.' You kneel and give the rice, ignoring the camera flashes."
+      },
+      {
+        "id": "d",
+        "text": "Grab rice from a monk's alms bowl when no one is looking and eat it yourself",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 9 },
+          "stats": { "happiness": -6, "spiritualDev": -8, "socialStanding": -10 },
+          "relationships": [{ "target": "mother", "change": -12 }, { "target": "monks", "change": -12 }, { "target": "community", "change": -10 }]
+        },
+        "outcomeText": "Your hand darts into the bowl and you stuff warm rice into your mouth. The monk does not flinch -- his discipline holds -- but his eyes flicker with something that might be pity. Your mother sees. She drops her own offering basket. The tourists stop photographing. In the sudden silence of the Luang Prabang morning, the weight of what you have done settles like stone. You have not just stolen food -- you have violated the oldest sacred exchange in Buddhism, the dana that connects laypeople and Sangha in a chain stretching back to the Buddha's own alms bowl. Your mother pulls you home without a word. She does not bring you to the alms round again for a very long time. The monks will still accept offerings from your family, because forgiveness is their practice. But the community remembers."
       }
     ],
     "tags": ["alms-round", "luang-prabang", "monks", "tourism", "dana", "morning"],
@@ -126,6 +136,16 @@
           "relationships": [{ "target": "family", "change": -3 }, { "target": "ancestors", "change": -5 }]
         },
         "outcomeText": "Your parents shake their heads. The calendar waits for no one. Khao Padapdin and Khao Salak -- the harvest ceremonies for the dead in the 9th and 10th lunar months -- must be observed on time. Already, the connection between the Buddhist calendar and the rice cycle is weakening as employment diversifies. Some families now make ancestor offerings at convenient times like New Year rather than the traditional harvest-linked dates. Your suggestion is practical but the acan disapproves."
+      },
+      {
+        "id": "d",
+        "text": "Gamble away the family's offering money on the boat race betting",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 8 },
+          "stats": { "happiness": -7, "spiritualDev": -5, "socialStanding": -8, "wealth": -4 },
+          "relationships": [{ "target": "family", "change": -12 }, { "target": "ancestors", "change": -10 }]
+        },
+        "outcomeText": "The boat race betting is irresistible -- everyone says your village's team will win. You wager the money your parents set aside for the ancestral offering. Your team loses. The money is gone. When your family arrives at the temple with no offering to present, your mother's hands are empty and her eyes are full. The acan looks at your family's bare spot among the elaborate offerings of other families and says nothing, which is worse than any rebuke. The ancestors of the previous year go without provisions. In Lao belief, hungry ancestors are dangerous ancestors -- they return in dreams demanding what they are owed. Your father works double shifts for weeks to repay the debt of shame. The festival that was meant to close the harvest cycle with gratitude instead opens a wound that takes a full year to heal."
       }
     ],
     "tags": ["boun", "harvest", "ancestors", "boat-racing", "festival", "agriculture"],
@@ -258,6 +278,16 @@
           "relationships": [{ "target": "community", "change": 10 }]
         },
         "outcomeText": "The entire district contributes: rice from one family, pork from another, ducks from a third, money from those who can spare it. The funeral becomes a communal event, strengthening the bonds of reciprocity that hold the village together. You will owe others when their turn comes -- and that is exactly the point. In Lao Buddhism, death is not a private matter but a community responsibility. The deceased benefits from the collective merit of dozens of families."
+      },
+      {
+        "id": "d",
+        "text": "Skim from the community funeral contributions and blame the shortfall on rising costs",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 10 },
+          "stats": { "happiness": -8, "spiritualDev": -7, "socialStanding": -10, "wealth": 4 },
+          "relationships": [{ "target": "community", "change": -15 }, { "target": "family", "change": -10 }, { "target": "monks", "change": -8 }]
+        },
+        "outcomeText": "Dozens of families contributed their scarce resources -- pork, ducks, rice, money -- trusting you to manage the funeral expenses. You take a portion for yourself and tell everyone the monks charged more, the pork was expensive, the incense cost double this year. The funeral proceeds, but it is noticeably diminished: fewer monks attend, the sompoi water ceremony is abbreviated, the bone-washing ritual is rushed. The acan notices and says quietly that the deceased's passage to muang savane may be incomplete. When the truth surfaces months later -- as it always does in a village where everyone knows everyone -- the betrayal cuts deeper than ordinary theft. You stole from a funeral. You stole from the dead. The reciprocity network that holds the community together fractures around you, and when your own family needs help, the silence from your neighbors is absolute."
       }
     ],
     "tags": ["funeral", "sompoi", "taleo", "acan", "bone-money", "muang-savane"],
@@ -400,6 +430,16 @@
           "relationships": [{ "target": "ancestors", "change": 8 }]
         },
         "outcomeText": "You place your offering at the base of the great stupa and dedicate the merit to all ancestors in your lineage. Monks chant nearby. The merit generated at Pha That Luang is believed to be especially powerful -- the stupa contains relics of the Buddha himself. Your ancestors receive a burst of spiritual credit on the most auspicious night of the Lao calendar. You walk home in the darkness, feeling lighter."
+      },
+      {
+        "id": "d",
+        "text": "Pocket offering money from the donation boxes around the stupa in the crowd's confusion",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 10 },
+          "stats": { "happiness": -6, "spiritualDev": -8, "socialStanding": -10, "wealth": 5 },
+          "relationships": [{ "target": "monks", "change": -12 }, { "target": "community", "change": -12 }]
+        },
+        "outcomeText": "The crowd surges around the stupa and you use the press of bodies as cover, reaching into donation boxes and palming bills. The money is warm from the hands of thousands of devotees who gave it with genuine faith. A monk standing nearby watches you with an expression of profound sadness -- not surprise, but the recognition of suffering creating more suffering. You have stolen from Pha That Luang, the holiest site in Laos, on the most sacred night of the year. The stupa contains relics of the Buddha himself, and every offering placed at its base carries the accumulated faith of the entire nation. The money buys you a few meals. The demerit, the monks would say, echoes across lifetimes. You cannot bring yourself to attend the festival again, and every time you see the golden stupa gleaming in the distance, your stomach tightens with a shame that no amount of spending can dissolve."
       }
     ],
     "tags": ["pha-that-luang", "stupa", "festival", "national", "pilgrimage", "vientiane"],

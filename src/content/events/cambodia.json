@@ -38,6 +38,16 @@
           "relationships": [{ "target": "grandmother", "change": 6 }]
         },
         "outcomeText": "You place the offerings before the Neak Ta, then press your palms together and recite a Buddhist blessing. Your grandmother smiles -- this is exactly how Cambodian Buddhism works. The pagoda holds both the Buddha and the Neak Ta; the village exists in the Srok (ordered space) between the wild Prei (forest) and the sacred. You are learning to honor both worlds, as your ancestors did."
+      },
+      {
+        "id": "d",
+        "text": "Kick over the shrine offerings and tell your grandmother the spirits are fake",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 7 },
+          "stats": { "happiness": -5, "spiritualDev": -5, "socialStanding": -8 },
+          "relationships": [{ "target": "grandmother", "change": -12 }, { "target": "community", "change": -8 }]
+        },
+        "outcomeText": "The fruit scatters across the dirt. The incense snaps underfoot. Your grandmother stares at you with an expression you have never seen before -- not anger but something deeper, a grief that reaches back through generations. The Neak Ta shrine has survived the Khmer Rouge, survived the forest clearing, survived decades of neglect. A child's tantrum will not destroy it. But the village witnesses your act, and the whispers begin immediately. The elders say the Neak Ta remembers every insult. That night, you cannot sleep, and the banyan tree outside your window seems to lean closer in the dark."
       }
     ],
     "tags": ["neak-ta", "spirits", "syncretism", "pagoda", "grandmother"],
@@ -126,6 +136,16 @@
           "relationships": []
         },
         "outcomeText": "You wander through the galleries alone, tracing your fingers over the bas-reliefs depicting the Churning of the Ocean of Milk, the Battle of Kurukshetra, Buddhist heavens and hells. The transition from Hindu Angkor Wat to Buddhist Bayon mirrors Cambodia's own religious evolution. You find a quiet corner where centuries of pilgrims have worn the stone smooth with their palms. You press your hand to the same spot, joining the unbroken chain."
+      },
+      {
+        "id": "d",
+        "text": "Chip off a small piece of carved stone from the temple to sell to a tourist as a souvenir",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 9 },
+          "stats": { "happiness": -3, "spiritualDev": -7, "socialStanding": -10, "wealth": 5 },
+          "relationships": [{ "target": "monks", "change": -10 }, { "target": "community", "change": -12 }]
+        },
+        "outcomeText": "You pry loose a fragment of carved sandstone -- a piece of apsara dancer's hand, eight centuries old -- and slip it into your pocket. The tourist pays eagerly. But a guard sees the fresh scar on the wall. Your teacher is summoned. The shame is absolute: you have defaced your own heritage, sold a piece of Khmer civilization for pocket money. The monk at the site says that Angkor's stones carry the merit of the kings who built them, and to steal from the temple is to steal from the Buddha himself. The money burns in your pocket. Your classmates will not look at you on the bus ride home."
       }
     ],
     "tags": ["angkor", "heritage", "tourism", "meditation", "history", "identity"],
@@ -268,6 +288,16 @@
           "relationships": [{ "target": "ancestors", "change": 12 }]
         },
         "outcomeText": "You travel to the memorial site where thousands of skulls are arranged behind glass. You place incense and flowers before the stupa and ask a monk to chant the bangsokol. The merit is dedicated not just to your family but to all who died here. Other visitors join, adding their own names and offerings. The ceremony becomes communal -- an entire nation making merit for its murdered ancestors. You weep, and for once, the tears feel like healing rather than harm."
+      },
+      {
+        "id": "d",
+        "text": "Use the bangsokol gathering to pressure relatives into giving you money, leveraging their guilt about the dead",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 8 },
+          "stats": { "happiness": -6, "spiritualDev": -6, "socialStanding": -8, "wealth": 4 },
+          "relationships": [{ "target": "family", "change": -12 }, { "target": "ancestors", "change": -10 }]
+        },
+        "outcomeText": "You turn the ceremony into a shakedown, cornering relatives with talk of shared obligation and hinting that those who do not contribute generously are dishonoring the murdered dead. Some pay out of guilt. An aunt weeps -- not for the ancestors, but at your cruelty. The monks observe in silence, but the senior monk later tells a relative that exploiting the bangsokol for personal gain is among the gravest acts of spiritual corruption. You have weaponized the genocide's grief for pocket money. That night, the shadowy figures at the foot of your bed seem closer than ever, and their faces are no longer obscured. They are not pleased."
       }
     ],
     "tags": ["bangsokol", "ancestors", "khmer-rouge", "merit-transfer", "healing", "genocide"],
@@ -356,6 +386,16 @@
           "relationships": [{ "target": "ancestors", "change": -5 }]
         },
         "outcomeText": "You accept the money and carefully dismantle the Neak Ta shrine, carrying the stones and offerings to your new location. But a Neak Ta is not portable -- it is bound to the earth and water of a specific place. The shrine can be rebuilt, but the spiritual connection to the ancestral land is severed. The compensation money runs out faster than expected. The Neak Ta of the new place does not know your family."
+      },
+      {
+        "id": "d",
+        "text": "Secretly feed information to the politician about your neighbors' plans in exchange for a private payment",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 9 },
+          "stats": { "happiness": -7, "spiritualDev": -6, "socialStanding": -10, "wealth": 5 },
+          "relationships": [{ "target": "community", "change": -15 }, { "target": "family", "change": -10 }]
+        },
+        "outcomeText": "You meet the politician's aide in a tea shop and tell him which families are organizing resistance, where the monks plan to hold vigils, and when the journalists are expected. The money is good. The evictions proceed with surgical precision -- families are targeted individually, isolated before they can unite. When the community realizes there was an informer, suspicion falls everywhere. But the Neak Ta knows. In Khmer tradition, guardian spirits see everything within their domain. You betrayed not just your neighbors but the sacred order of the Srok itself. The payment runs out. The guilt does not."
       }
     ],
     "tags": ["land-dispute", "neak-ta", "politics", "displacement", "resistance"],
@@ -444,6 +484,16 @@
           "relationships": [{ "target": "community", "change": -3 }]
         },
         "outcomeText": "You prioritize your children's education over the pagoda fund. It is a defensible choice -- the Khmer Rouge destroyed schools as well as pagodas. But the community notices your absence from work days. In post-genocide Cambodia, rebuilding the pagoda is not optional -- it is a communal act of defiance against erasure. Your children go to school, but the question remains: what good is education without the spiritual center that gives the Srok its meaning?"
+      },
+      {
+        "id": "d",
+        "text": "Volunteer to manage the rebuilding fund, then skim money for yourself",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 10 },
+          "stats": { "happiness": -8, "spiritualDev": -8, "socialStanding": -10, "wealth": 5 },
+          "relationships": [{ "target": "community", "change": -15 }, { "target": "monks", "change": -12 }]
+        },
+        "outcomeText": "You offer to keep the accounts, and the community trusts you. Over months you siphon small amounts -- a few dollars here, materials diverted there. The pagoda construction slows inexplicably. When the discrepancy is discovered, the silence from the village is worse than any accusation. You have stolen not just money but from the collective healing of a genocide. The monks say that stealing from the Sangha generates demerit that echoes across lifetimes. Families who contributed their last riel to rebuild what the Khmer Rouge destroyed now look at you the way they once looked at the cadres. You are not welcome at the construction site again."
       }
     ],
     "tags": ["pagoda", "rebuilding", "khmer-rouge", "community", "healing", "merit"],

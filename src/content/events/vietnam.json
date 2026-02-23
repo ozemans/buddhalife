@@ -38,6 +38,16 @@
           "relationships": [{ "target": "family", "change": 6 }]
         },
         "outcomeText": "Your mother smiles and tells you: in the otherworld, the ancestors need what we send them. The food, the incense, the paper offerings -- these are provisions for their journey. When we honor them, they protect us. When we forget them, they suffer and we suffer too. She adds: 'Your grandfather loved mangoes. Do you think he stops loving mangoes just because he died?' The answer, in Vietnamese cosmology, is no. Love and obligation persist beyond the grave."
+      },
+      {
+        "id": "d",
+        "text": "Take the offering fruit to sell at the market for pocket money",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 8 },
+          "stats": { "happiness": -5, "spiritualDev": -6, "socialStanding": -8, "wealth": 3 },
+          "relationships": [{ "target": "family", "change": -10 }, { "target": "ancestors", "change": -12 }]
+        },
+        "outcomeText": "You slip the mangoes and sticky rice into a bag and sell them at the corner market for a few thousand dong. When your mother finds the altar bare, her face goes white. She does not shout. She sits down slowly, as if something has broken inside her. Your grandfather's photograph watches from the empty altar. That night, you dream of an old man with hollow eyes reaching toward you with thin hands, whispering: 'Even the food? You took even the food?' Your grandmother says you have invited the ancestors' deepest displeasure -- not anger, but sorrow, which is far worse. The coins in your pocket feel impossibly heavy."
       }
     ],
     "tags": ["ancestor-altar", "ban-tho", "ancestors", "to-tien", "family"],
@@ -82,6 +92,16 @@
           "relationships": [{ "target": "family", "change": 6 }]
         },
         "outcomeText": "At the pagoda, monks chant in Sino-Vietnamese and transliterated Sanskrit. The Vu Lan ceremony honors filial piety -- the story of Muc Kien Lien descending to hell to save his mother. Even without understanding every word, the chanting generates merit. The pagoda is packed: young and old, rich and poor, all here to honor their mothers and pacify the wandering dead. You feel the weight of Vietnam's spiritual world -- Mahayana Buddhism, Confucian filial piety, and animist spirit belief all braided together."
+      },
+      {
+        "id": "d",
+        "text": "Steal the food offerings left outside for the wandering spirits",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 7 },
+          "stats": { "happiness": -4, "spiritualDev": -5, "socialStanding": -7, "wealth": 3 },
+          "relationships": [{ "target": "grandmother", "change": -10 }, { "target": "community", "change": -8 }]
+        },
+        "outcomeText": "You creep along the street collecting plates of food left out for the con ma. Roast duck, sticky rice, fruit -- a feast meant for the hungry dead. A neighbor catches you with your arms full. The look on her face is not anger but horror: on the one night when the gates of the underworld stand open, you are stealing from the most dangerous spirits in Vietnamese cosmology. Your grandmother hears and cannot speak for a full minute. 'You have taken food from the mouths of the dead,' she finally whispers. 'The wandering souls have nothing -- no family, no altar, no peace -- and you took even this.' For weeks afterward, you feel cold spots following you down the street, and the smell of incense makes your stomach turn with shame."
       }
     ],
     "tags": ["ghost-festival", "con-ma", "wandering-souls", "vu-lan", "ancestors"],
@@ -234,6 +254,16 @@
           "relationships": [{ "target": "family", "change": 10 }, { "target": "ancestors", "change": 10 }]
         },
         "outcomeText": "You do both: the paper mansion for your uncle's material needs in the otherworld, and a full Buddhist ceremony at the pagoda for his spiritual merit. Monks chant in Sino-Vietnamese while the nha tang burns in the courtyard. Tam giao -- the 'triple religion' of Buddhism, Taoism, and Confucianism -- finds its natural expression in your uncle's funeral. Not one tradition alone but all three woven together, as they have been in Vietnam for centuries."
+      },
+      {
+        "id": "d",
+        "text": "Pocket the money your family gave you for the nha tang and claim it cost less than expected",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 8 },
+          "stats": { "happiness": -6, "spiritualDev": -5, "socialStanding": -8, "wealth": 5 },
+          "relationships": [{ "target": "family", "change": -12 }, { "target": "ancestors", "change": -10 }]
+        },
+        "outcomeText": "You commission a cheap, flimsy nha tang and keep the difference. At the burning, the paper mansion collapses before the flames even reach it, its thin walls buckling in the heat. Your aunt frowns -- she knows what a proper nha tang looks like. Your cousin whispers to your mother. In the otherworld, your uncle receives a broken house, a home unfit for habitation. In Vietnamese belief, what you burn is exactly what the dead receive. You have condemned your uncle to poverty in the afterlife to enrich yourself in this one. The family's trust in you -- once the bedrock of hieu -- cracks like cheap paper in the fire. The money spends quickly, but your uncle's funeral becomes the one the family remembers with shame."
       }
     ],
     "tags": ["nha-tang", "paper-mansion", "ancestors", "funeral", "otherworld", "tam-giao"],
@@ -376,6 +406,16 @@
           "relationships": [{ "target": "parents", "change": 8 }, { "target": "partner", "change": 6 }]
         },
         "outcomeText": "You honor both traditions: the ancestral rites at dawn, the temple blessing at noon, and the feast at dusk. It costs more and exhausts everyone, but the tam giao spirit of Vietnam -- braiding multiple traditions into one -- finds its perfect expression. Confucian filial piety, Buddhist blessings, and Taoist harmony all present in a single day. Your parents are satisfied; your partner is happy; the monks are encouraged. This is how Vietnamese religion has always worked: not choosing, but combining."
+      },
+      {
+        "id": "d",
+        "text": "Show up drunk to the ceremony and loudly mock the rituals as pointless",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 7 },
+          "stats": { "happiness": -8, "spiritualDev": -4, "socialStanding": -10 },
+          "relationships": [{ "target": "parents", "change": -10 }, { "target": "partner", "change": -8 }, { "target": "community", "change": -8 }]
+        },
+        "outcomeText": "You arrive reeking of rice wine, stumbling into the ceremony space. You laugh at the incense, call the monks' chanting 'noise,' and ask loudly why anyone bothers with dead people who cannot hear. Your mother covers her face. Your partner stares at you with the expression of someone realizing they have made a terrible mistake. The monks continue chanting -- they have seen worse -- but the guests fall silent with the particular Vietnamese silence that is louder than any rebuke. Your father leads you outside by the arm without a word. The ancestors at the ban tho witnessed everything. In Vietnamese culture, to disgrace your family at a ceremony is to wound the living and the dead simultaneously. The wedding photographs will always carry the shadow of this moment."
       }
     ],
     "tags": ["wedding", "temple", "ancestors", "modernity", "tam-giao", "family"],
@@ -552,6 +592,16 @@
           "relationships": [{ "target": "elders", "change": 8 }]
         },
         "outcomeText": "You shadow the elders throughout the festival, asking questions. Why do they offer this food? What does the guardian spirit protect? How does the Buddhist chanting connect to the Confucian scrolls? The elders are delighted -- few young people ask anymore. They explain the layered history: the dinh predates Buddhism in Vietnam, but Buddhism was woven in centuries ago, and Confucian order gave it structure. Understanding the layers makes the festival richer. You are learning to see with Vietnamese eyes."
+      },
+      {
+        "id": "d",
+        "text": "Sneak into the dinh during the ceremony and steal money from the offering collection",
+        "effects": {
+          "karma": { "merit": 0, "demerit": 9 },
+          "stats": { "happiness": -5, "spiritualDev": -7, "socialStanding": -10, "wealth": 4 },
+          "relationships": [{ "target": "family", "change": -10 }, { "target": "community", "change": -12 }, { "target": "elders", "change": -10 }]
+        },
+        "outcomeText": "While the procession circles outside, you slip into the dinh and grab fistfuls of offering money from the collection box. The guardian spirit's painted eyes seem to follow you from the altar. An elder catches you at the door, money spilling from your pockets. The silence that follows is devastating. The dinh has been the village's sacred center for centuries -- offerings to the guardian spirit paid for by every family, rich and poor alike. To steal from it is to steal from the entire community and from the spirit that protects them all. Your parents are summoned. Your father cannot meet the elders' eyes. Your urban cousin, who called the festival backward, at least never robbed it. The village will remember this for years, and the guardian spirit, the elders say, remembers forever."
       }
     ],
     "tags": ["dinh", "communal-hall", "tam-giao", "village", "guardian-spirit", "festival"],

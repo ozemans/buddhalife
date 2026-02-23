@@ -227,7 +227,7 @@ export default function EndScreen({ state, onRestart }) {
 
 const styles = {
   container: {
-    minHeight: '100vh',
+    minHeight: '100dvh',
     backgroundColor: '#FFFFFF',
     display: 'flex',
     justifyContent: 'center',

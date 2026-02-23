@@ -73,6 +73,7 @@ export default function TermTooltip({ term, translation, description, children }
             marginTop: 6,
             zIndex: 100,
             width: 260,
+            maxWidth: '90vw',
             padding: '12px 16px',
             borderRadius: 12,
             backgroundColor: '#FFFFFF',

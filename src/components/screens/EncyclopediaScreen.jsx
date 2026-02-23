@@ -152,7 +152,7 @@ export default function EncyclopediaScreen({ glossary = [], onBack }) {
 
 const styles = {
   container: {
-    minHeight: '100vh',
+    minHeight: '100dvh',
     backgroundColor: '#FFFFFF',
     display: 'flex',
     justifyContent: 'center',
@@ -170,10 +170,11 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    height: 56,
+    minHeight: 56,
     backgroundColor: '#E8960C',
     borderRadius: '0 0 16px 16px',
     padding: '0 12px',
+    paddingTop: 'env(safe-area-inset-top, 0px)',
     marginBottom: 20,
     position: 'sticky',
     top: 0,
@@ -206,7 +207,7 @@ const styles = {
     borderRadius: 12,
     border: '1px solid #D1D1D6',
     backgroundColor: '#F2F2F7',
-    fontSize: 15,
+    fontSize: 16,
     color: '#1D1D1F',
     outline: 'none',
     fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',

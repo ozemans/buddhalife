@@ -180,7 +180,7 @@ export default function TitleScreen({ onStartGame, backgrounds, hasSavedGame, on
 
 const styles = {
   container: {
-    minHeight: '100vh',
+    minHeight: '100dvh',
     backgroundColor: '#FFFFFF',
     display: 'flex',
     justifyContent: 'center',
@@ -190,7 +190,7 @@ const styles = {
   inner: {
     width: '100%',
     maxWidth: 480,
-    minHeight: '100vh',
+    minHeight: '100dvh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

@@ -30,8 +30,11 @@ export default function SoundToggle() {
         lineHeight: 1,
         padding: '4px 8px',
         borderRadius: 12,
+        minWidth: 44,
+        minHeight: 44,
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center',
       }}
       aria-label={muted ? 'Unmute sound' : 'Mute sound'}
       title={muted ? 'Unmute sound' : 'Mute sound'}

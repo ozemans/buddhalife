@@ -311,7 +311,7 @@ export default function GameScreen({
       style={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh',
+        height: '100dvh',
         maxWidth: 480,
         margin: '0 auto',
         backgroundColor: '#FFFFFF',
@@ -325,12 +325,13 @@ export default function GameScreen({
           position: 'sticky',
           top: 0,
           zIndex: 30,
-          height: 56,
+          minHeight: 56,
           backgroundColor: '#E8960C',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0 16px',
+          paddingTop: 'env(safe-area-inset-top, 0px)',
           flexShrink: 0,
           cursor: activeTab !== 'game' ? 'pointer' : 'default',
         }}
@@ -372,8 +373,11 @@ export default function GameScreen({
               fontSize: 22,
               lineHeight: 1,
               padding: 4,
+              minWidth: 44,
+              minHeight: 44,
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'center',
             }}
             aria-label="Encyclopedia"
             title="Encyclopedia"
@@ -390,6 +394,7 @@ export default function GameScreen({
           flex: 1,
           overflowY: 'auto',
           padding: 16,
+          paddingBottom: 96,
           maxWidth: 600,
           width: '100%',
           margin: '0 auto',

@@ -52,7 +52,7 @@ function ProgressDots({ current, total }) {
   );
 }
 
-export default function TitleScreen({ onStartGame, backgrounds }) {
+export default function TitleScreen({ onStartGame, backgrounds, hasSavedGame, onContinue }) {
   const [step, setStep] = useState(0);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [name, setName] = useState('');
@@ -84,7 +84,7 @@ export default function TitleScreen({ onStartGame, backgrounds }) {
             <h1 style={styles.title}>BuddhaLife</h1>
             <p style={styles.subtitle}>Live a Buddhist life in Southeast Asia</p>
           </div>
-          <div style={{ width: '100%', paddingBottom: 32 }}>
+          <div style={{ width: '100%', paddingBottom: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>
             <button
               onClick={() => setStep(1)}
               style={styles.primaryButton}
@@ -94,6 +94,17 @@ export default function TitleScreen({ onStartGame, backgrounds }) {
             >
               New Life
             </button>
+            {hasSavedGame && (
+              <button
+                onClick={onContinue}
+                style={styles.continueButton}
+                onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.97)'; }}
+                onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+              >
+                Continue
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -326,6 +337,19 @@ const styles = {
     border: 'none',
     backgroundColor: '#E8960C',
     color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: 600,
+    cursor: 'pointer',
+    transition: 'transform 0.15s ease-out',
+    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  },
+  continueButton: {
+    width: '100%',
+    height: 56,
+    borderRadius: 16,
+    border: '2px solid #E8960C',
+    backgroundColor: '#F2F2F7',
+    color: '#E8960C',
     fontSize: 18,
     fontWeight: 600,
     cursor: 'pointer',

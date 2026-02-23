@@ -84,6 +84,7 @@ export default function AgeAdvance({ currentAge = 0, lifeStage, onAdvance }) {
             fontSize: 14,
             color: '#E8960C',
             fontWeight: 500,
+            animation: 'pulse-glow 2s ease-in-out infinite',
           }}
         >
           Entering {nextStageLabel}

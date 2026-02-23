@@ -20,6 +20,7 @@ export const ACTIONS = {
   GO_TO_CREATE: 'GO_TO_CREATE',
   RETURN_TO_TITLE: 'RETURN_TO_TITLE',
   DISMISS_EVENT: 'DISMISS_EVENT',
+  RESTORE_SAVE: 'RESTORE_SAVE',
 };
 
 const initialState = {
@@ -179,6 +180,10 @@ function gameReducer(state, action) {
         karma: { ...initialState.karma, uncertainty: Math.random() * 0.2 },
       };
 
+    case ACTIONS.RESTORE_SAVE:
+      // Replace entire state with saved data
+      return { ...action.payload };
+
     default:
       return state;
   }
@@ -217,11 +222,56 @@ function applyRelationshipChanges(relationships, changes) {
   return updated;
 }
 
-export function useGameState() {
-  const [state, dispatch] = useReducer(gameReducer, {
+// --- localStorage persistence ---
+
+const SAVE_KEY = 'buddhalife_save';
+
+export function saveGame(state) {
+  if (state.screen !== SCREENS.PLAYING && state.screen !== SCREENS.EVENT) return;
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+  } catch (_) {
+    // silently ignore quota errors or unavailable localStorage
+  }
+}
+
+export function loadGame() {
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    // Basic validity check: must have a screen and character object
+    if (!parsed || !parsed.screen || !parsed.character) return null;
+    return parsed;
+  } catch (_) {
+    return null;
+  }
+}
+
+export function clearSave() {
+  try {
+    localStorage.removeItem(SAVE_KEY);
+  } catch (_) {
+    // ignore
+  }
+}
+
+export function hasSave() {
+  try {
+    return localStorage.getItem(SAVE_KEY) !== null;
+  } catch (_) {
+    return false;
+  }
+}
+
+// --- Hook ---
+
+export function useGameState(initialOverride) {
+  const init = initialOverride || {
     ...initialState,
     karma: { ...initialState.karma, uncertainty: Math.random() * 0.2 },
-  });
+  };
+  const [state, dispatch] = useReducer(gameReducer, init);
   return [state, dispatch];
 }
 

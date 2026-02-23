@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { highlightTerms } from '../../utils/termHighlighter';
+import TermTooltip from '../ui/TermTooltip';
 
 const TAG_EMOJI_MAP = {
   spiritual: '\uD83D\uDE4F',
@@ -159,6 +161,11 @@ export default function EventCard({ event, onChoice }) {
   const [selectedChoice, setSelectedChoice] = useState(null);
   const [showOutcome, setShowOutcome] = useState(false);
 
+  const bodyText = showOutcome && selectedChoice?.outcomeText
+    ? selectedChoice.outcomeText
+    : (event?.description || '');
+  const bodySegments = useMemo(() => highlightTerms(bodyText), [bodyText]);
+
   if (!event) return null;
 
   const eventEmoji = getEventEmoji(event);
@@ -203,9 +210,20 @@ export default function EventCard({ event, onChoice }) {
           marginBottom: 24,
         }}
       >
-        {showOutcome && selectedChoice?.outcomeText
-          ? selectedChoice.outcomeText
-          : event.description}
+        {bodySegments.map((segment, i) =>
+          segment.type === 'term' ? (
+            <TermTooltip
+              key={i}
+              term={segment.entry.term}
+              translation={segment.entry.translation}
+              description={segment.entry.description}
+            >
+              {segment.content}
+            </TermTooltip>
+          ) : (
+            <span key={i}>{segment.content}</span>
+          )
+        )}
       </p>
 
       {/* Stat change indicators (shown after choosing) */}
@@ -216,6 +234,7 @@ export default function EventCard({ event, onChoice }) {
             flexWrap: 'wrap',
             gap: 8,
             marginBottom: 20,
+            animation: 'slide-up-fade 0.3s ease-out',
           }}
         >
           {statChanges.map((change, i) => (
@@ -231,6 +250,9 @@ export default function EventCard({ event, onChoice }) {
                 fontWeight: 600,
                 backgroundColor: change.value > 0 ? '#E8F5E9' : '#FFEBEE',
                 color: change.value > 0 ? '#34C759' : '#FF3B30',
+                animation: 'slide-up-fade 0.3s ease-out',
+                animationDelay: `${i * 0.08}s`,
+                animationFillMode: 'backwards',
               }}
             >
               {getStatEmoji(change.key)}{' '}

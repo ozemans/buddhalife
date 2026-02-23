@@ -1,13 +1,15 @@
-import { useState, useCallback, useMemo } from 'react';
-import { useGameState, SCREENS, ACTIONS } from './engine/gameState.js';
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import { useGameState, SCREENS, ACTIONS, saveGame, loadGame, clearSave, hasSave } from './engine/gameState.js';
 import { selectEvent } from './engine/eventSelector.js';
 import { advanceYear, checkDeath, getRebirthPrognosis } from './engine/lifeProgression.js';
 import { applyChoice } from './engine/consequences.js';
+import { checkForFestival, createFestivalEvent } from './engine/festivalEngine.js';
 
 import TitleScreen from './components/screens/TitleScreen.jsx';
 import GameScreen from './components/screens/GameScreen.jsx';
 import EndScreen from './components/screens/EndScreen.jsx';
 import EncyclopediaScreen from './components/screens/EncyclopediaScreen.jsx';
+import ScreenTransition from './components/ui/ScreenTransition.jsx';
 
 // Import all event data
 import thailandEvents from './content/events/thailand.json';
@@ -72,6 +74,27 @@ function adaptChoice(choice) {
 export default function App() {
   const [state, dispatch] = useGameState();
   const [showEncyclopedia, setShowEncyclopedia] = useState(false);
+  const [savedGameExists, setSavedGameExists] = useState(() => hasSave());
+  const prevScreenRef = useRef(state.screen);
+
+  // Auto-save whenever state changes while PLAYING or EVENT
+  useEffect(() => {
+    if (state.screen === SCREENS.PLAYING || state.screen === SCREENS.EVENT) {
+      saveGame(state);
+      setSavedGameExists(true);
+    }
+  }, [state]);
+
+  // Clear save when transitioning INTO end-of-life or title (not on initial mount)
+  useEffect(() => {
+    const prev = prevScreenRef.current;
+    prevScreenRef.current = state.screen;
+    if (prev === state.screen) return;
+    if (state.screen === SCREENS.END_OF_LIFE || state.screen === SCREENS.TITLE) {
+      clearSave();
+      setSavedGameExists(false);
+    }
+  }, [state.screen]);
 
   // Get country-specific backgrounds for the title screen
   const countryBackgrounds = useMemo(() => {
@@ -124,7 +147,15 @@ export default function App() {
       return;
     }
 
-    // 4. Maybe trigger an event
+    // 4. Check for festival event
+    const festival = checkForFestival(state.character.country, nextState.character.age);
+    if (festival) {
+      const festivalEvent = createFestivalEvent(festival, nextState.character.age);
+      dispatch({ type: ACTIONS.TRIGGER_EVENT, payload: festivalEvent });
+      return; // Festival takes priority this year
+    }
+
+    // 5. Maybe trigger a regular event
     const stage = yearChanges.newStage || state.lifeStage;
     const eventChance = EVENT_CHANCE[stage] || 0.5;
 
@@ -160,6 +191,14 @@ export default function App() {
     });
   }, [state, dispatch]);
 
+  // Handle continuing from a saved game
+  const handleContinue = useCallback(() => {
+    const saved = loadGame();
+    if (saved) {
+      dispatch({ type: ACTIONS.RESTORE_SAVE, payload: saved });
+    }
+  }, [dispatch]);
+
   // Handle restart
   const handleRestart = useCallback(() => {
     dispatch({ type: ACTIONS.RETURN_TO_TITLE });
@@ -177,26 +216,25 @@ export default function App() {
   // Show encyclopedia overlay if open
   if (showEncyclopedia) {
     return (
-      <EncyclopediaScreen
-        glossary={glossary}
-        onBack={handleCloseEncyclopedia}
-      />
+      <ScreenTransition screenKey="encyclopedia">
+        <EncyclopediaScreen
+          glossary={glossary}
+          onBack={handleCloseEncyclopedia}
+        />
+      </ScreenTransition>
     );
   }
 
-  // Route to the correct screen
-  switch (state.screen) {
-    case SCREENS.TITLE:
-      return (
-        <TitleScreen
-          onStartGame={handleStartGame}
-          backgrounds={countryBackgrounds}
-        />
-      );
+  // Determine which screen to render
+  const screenKey = state.screen === SCREENS.PLAYING || state.screen === SCREENS.EVENT
+    ? 'game'
+    : state.screen;
 
+  let screenContent;
+  switch (state.screen) {
     case SCREENS.PLAYING:
     case SCREENS.EVENT:
-      return (
+      screenContent = (
         <GameScreen
           state={state}
           onAdvanceYear={handleAdvanceYear}
@@ -204,21 +242,33 @@ export default function App() {
           onOpenEncyclopedia={handleOpenEncyclopedia}
         />
       );
+      break;
 
     case SCREENS.END_OF_LIFE:
-      return (
+      screenContent = (
         <EndScreen
           state={state}
           onRestart={handleRestart}
         />
       );
+      break;
 
+    case SCREENS.TITLE:
     default:
-      return (
+      screenContent = (
         <TitleScreen
           onStartGame={handleStartGame}
           backgrounds={countryBackgrounds}
+          hasSavedGame={savedGameExists}
+          onContinue={handleContinue}
         />
       );
+      break;
   }
+
+  return (
+    <ScreenTransition screenKey={screenKey}>
+      {screenContent}
+    </ScreenTransition>
+  );
 }

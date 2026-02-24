@@ -61,18 +61,6 @@ export default function AgeAdvance({ currentAge = 0, lifeStage, onAdvance }) {
         Age: {currentAge}
       </div>
 
-      {/* Life stage label */}
-      <div
-        style={{
-          fontSize: 16,
-          color: '#6E6E73',
-          marginTop: 8,
-          fontWeight: 400,
-        }}
-      >
-        {currentStageLabel}
-      </div>
-
       {/* Transition notice */}
       {isTransition && (
         <div

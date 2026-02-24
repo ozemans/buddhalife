@@ -1,3 +1,9 @@
+import backgrounds from '../../content/characters/backgrounds.json';
+
+const BACKGROUND_LABELS = Object.values(backgrounds)
+  .flat()
+  .reduce((map, bg) => { map[bg.id] = bg.label; return map; }, {});
+
 const COUNTRY_FLAGS = {
   thailand: '\uD83C\uDDF9\uD83C\uDDED',
   myanmar: '\uD83C\uDDF2\uD83C\uDDF2',
@@ -111,7 +117,7 @@ export default function ProfileTab({ character = {}, stats = {}, karma = {}, lif
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: 14, color: '#6E6E73' }}>Background</span>
             <span style={{ fontSize: 14, fontWeight: 600, color: '#1D1D1F' }}>
-              {character.background || 'Unknown'}
+              {BACKGROUND_LABELS[character.background] || character.background || 'Unknown'}
             </span>
           </div>
         </div>

@@ -5,6 +5,11 @@ import AgeAdvance from '../game/AgeAdvance';
 import Timeline from '../game/Timeline';
 import KarmaVisualizer from '../game/KarmaVisualizer';
 import SoundToggle from '../ui/SoundToggle';
+import backgrounds from '../../content/characters/backgrounds.json';
+
+const BACKGROUND_LABELS = Object.values(backgrounds)
+  .flat()
+  .reduce((map, bg) => { map[bg.id] = bg.label; return map; }, {});
 
 const COUNTRY_FLAGS = {
   thailand: '\uD83C\uDDF9\uD83C\uDDED',
@@ -98,7 +103,7 @@ function ProfileTab({ character, age, lifeStage }) {
             Background
           </div>
           <div style={{ fontSize: 14, color: '#1D1D1F', lineHeight: 1.5 }}>
-            {character.background}
+            {BACKGROUND_LABELS[character.background] || character.background}
           </div>
         </div>
       )}

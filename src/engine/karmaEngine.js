@@ -1,5 +1,5 @@
 /**
- * Karma Engine for BuddhaLife
+ * Karma Engine for Samsara
  *
  * Karma is NOT a single number. Merit and demerit accumulate separately.
  * Momentum tracks tendencies -- repeated good acts build virtuous momentum,

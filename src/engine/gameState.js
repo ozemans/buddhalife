@@ -228,7 +228,7 @@ function applyRelationshipChanges(relationships, changes) {
 
 // --- localStorage persistence ---
 
-const SAVE_KEY = 'buddhalife_save';
+const SAVE_KEY = 'samsara_save';
 
 export function saveGame(state) {
   if (state.screen !== SCREENS.PLAYING && state.screen !== SCREENS.EVENT) return;

@@ -1,5 +1,5 @@
 /**
- * Life Progression Engine for BuddhaLife
+ * Life Progression Engine for Samsara
  *
  * Handles aging, life stage transitions, natural stat changes,
  * and death probability. The life course follows the Theravada/Shan

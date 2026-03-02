@@ -3,7 +3,7 @@ let muted = false;
 
 // Restore mute preference from localStorage
 try {
-  muted = localStorage.getItem('buddhalife_muted') === 'true';
+  muted = localStorage.getItem('samsara_muted') === 'true';
 } catch (_) {
   // localStorage unavailable (SSR, tests, etc.)
 }
@@ -28,7 +28,7 @@ export function isMuted() {
 export function setMuted(value) {
   muted = !!value;
   try {
-    localStorage.setItem('buddhalife_muted', String(muted));
+    localStorage.setItem('samsara_muted', String(muted));
   } catch (_) {
     // ignore
   }

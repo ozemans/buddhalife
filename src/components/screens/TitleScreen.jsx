@@ -87,7 +87,7 @@ export default function TitleScreen({ onStartGame, backgrounds, hasSavedGame, on
         <div style={styles.inner}>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <span style={{ fontSize: 64, lineHeight: 1, marginBottom: 16 }}>☸️</span>
-            <h1 style={styles.title}>BuddhaLife</h1>
+            <h1 style={styles.title}>Samsara</h1>
             <p style={styles.subtitle}>Live a Buddhist life in Southeast Asia</p>
           </div>
           <div style={{ width: '100%', paddingBottom: 32, display: 'flex', flexDirection: 'column', gap: 12 }}>

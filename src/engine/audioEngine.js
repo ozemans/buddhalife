@@ -80,7 +80,9 @@ function createTone(ctx, { type = 'sine', freq, startTime, attack, decay, sustai
 // ---------------------------------------------------------------------------
 
 /**
- * Temple bell -- sine wave ~800Hz, quick attack, long shimmer decay (~2s).
+ * Temple gong -- low fundamental ~180Hz with inharmonic overtones and slow
+ * beating decay (~3s). Modeled after Southeast Asian bronze gongs (Thai khong,
+ * Burmese kyeezee) used in Theravada temple practice.
  * Played on: age advance, festival events.
  */
 export function playBell() {
@@ -89,37 +91,48 @@ export function playBell() {
 
   const now = ctx.currentTime;
 
-  // Main bell tone
+  // Low fundamental strike
   createTone(ctx, {
-    freq: 800,
+    freq: 180,
     startTime: now,
-    attack: 0.005,
-    decay: 1.8,
+    attack: 0.01,
+    decay: 2.8,
     sustain: 0,
-    release: 0.2,
-    peakGain: 0.12,
+    release: 0.4,
+    peakGain: 0.14,
   });
 
-  // Shimmer overtone (slight frequency offset for beating)
+  // Beating pair (slight detune for the slow wobble characteristic of gongs)
   createTone(ctx, {
-    freq: 803,
+    freq: 182.5,
     startTime: now,
-    attack: 0.005,
-    decay: 1.5,
+    attack: 0.01,
+    decay: 2.5,
     sustain: 0,
-    release: 0.2,
-    peakGain: 0.06,
+    release: 0.4,
+    peakGain: 0.08,
   });
 
-  // Higher harmonic for brightness
+  // Inharmonic overtone (~2.4x fundamental, not a clean octave)
   createTone(ctx, {
-    freq: 1600,
+    freq: 432,
     startTime: now,
-    attack: 0.003,
-    decay: 0.8,
+    attack: 0.008,
+    decay: 1.6,
+    sustain: 0,
+    release: 0.2,
+    peakGain: 0.04,
+  });
+
+  // High metallic sheen (~4.7x fundamental)
+  createTone(ctx, {
+    freq: 846,
+    startTime: now,
+    attack: 0.005,
+    decay: 0.6,
     sustain: 0,
     release: 0.1,
-    peakGain: 0.03,
+    peakGain: 0.015,
   });
 }
 

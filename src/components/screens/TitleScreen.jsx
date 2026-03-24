@@ -5,31 +5,31 @@ const COUNTRIES = [
     id: 'thailand',
     name: 'Thailand',
     flag: '\uD83C\uDDF9\uD83C\uDDED',
-    teaser: 'Gilded temples, spirit houses, and the Land of Smiles.',
+    teaser: 'Spirit houses, novice ordination, and a merit economy shaped by everyday generosity.',
   },
   {
     id: 'myanmar',
     name: 'Myanmar',
     flag: '\uD83C\uDDF2\uD83C\uDDF2',
-    teaser: 'Ancient Bagan pagodas and deep monastic devotion.',
+    teaser: 'Pagoda patronage, Karen moral economies, and monastic authority in a divided state.',
   },
   {
     id: 'cambodia',
     name: 'Cambodia',
     flag: '\uD83C\uDDF0\uD83C\uDDED',
-    teaser: 'Angkor heritage and Buddhist resilience reborn.',
+    teaser: 'Peace walks, forest ordination, and Buddhism rebuilt after the Khmer Rouge.',
   },
   {
     id: 'vietnam',
     name: 'Vietnam',
     flag: '\uD83C\uDDFB\uD83C\uDDF3',
-    teaser: 'Mahayana, Theravada, and Confucian values intertwined.',
+    teaser: 'Ancestor altars, restless spirits, and young Buddhists remaking tradition.',
   },
   {
     id: 'laos',
     name: 'Laos',
     flag: '\uD83C\uDDF1\uD83C\uDDE6',
-    teaser: 'Dawn alms rounds in the quiet heart of Indochina.',
+    teaser: 'Alms rounds, elaborate funerary rites, and merit transferred across generations.',
   },
 ];
 
